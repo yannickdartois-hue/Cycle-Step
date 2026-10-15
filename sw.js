@@ -1,0 +1,6 @@
+/* Cycle step : l'outil et ses PDF sont mis en cache à la 1re ouverture (Wi-Fi), puis fonctionnent sans réseau. */
+const C='cycle-step-v1';const FILES=["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "pdf/2de-step-S1.pdf", "pdf/2de-step-S2.pdf", "pdf/2de-step-S3.pdf", "pdf/2de-step-S4.pdf", "pdf/2de-step-S5.pdf", "pdf/2de-step-S6.pdf", "pdf/2de-step-S7.pdf", "pdf/2de-step-S8.pdf", "pdf/2de-step-banque.pdf", "pdf/2de-step-carnet.pdf", "pdf/2de-step-cycle-complet.pdf", "pdf/2de-step-defis.pdf", "pdf/2de-step-echauffement-binome.pdf", "pdf/2de-step-evaluation.pdf", "pdf/2de-step-fiche-coach.pdf", "pdf/2de-step-repertoire-16-pas.pdf", "pdf/2de-step-table-fc.pdf", "pdf/2de-step-version-perso.pdf"];
+self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith('cycle-step')&&k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||new URL(e.request.url).pathname.includes('/carnet/'))return;
+  e.respondWith(fetch(e.request).then(r=>{const cp=r.clone();caches.open(C).then(c=>c.put(e.request,cp));return r}).catch(()=>caches.match(e.request).then(r=>r||caches.match('index.html'))))});
