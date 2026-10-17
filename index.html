@@ -2,12 +2,16 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Step">
+<meta name="theme-color" content="#7c3aed">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cycle Step Seconde</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="theme-color" content="#0f766e">
 <style>
 :root{--bg:#f6f7f9;--surface:#fff;--ink:#16202c;--muted:#5b6675;--line:#d9dee5;--accent:#0f766e;--accent-soft:#e6f4f2;--warn:#ea580c;--pD:#2563eb;--pG:#ea580c;--ok:#15803d;--chip:#eef1f5}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f141a;--surface:#18202a;--ink:#e6ebf1;--muted:#9aa6b4;--line:#2d3845;--accent:#2dd4bf;--accent-soft:#12302d;--warn:#fb923c;--pD:#60a5fa;--pG:#fb923c;--ok:#4ade80;--chip:#222c38}}
@@ -164,9 +168,16 @@ body.printmode #printzone{display:block;padding:0 8px}
   .cn td{height:52px}
 }
 </style>
+
+<style id="appicon-css">.appicon{width:40px;height:40px;border-radius:9px;vertical-align:middle;margin:0 10px 0 0;box-shadow:0 1px 3px rgba(0,0,0,.25);flex:none;display:inline-block;object-fit:cover}
+.appicon.big{width:72px;height:72px;border-radius:16px;margin:0 auto 10px;display:block}
+.appicon.fill{width:100%;height:100%;margin:0;border-radius:inherit;box-shadow:none;display:block}
+.appicon.logoimg{width:46px;height:46px;margin:0;border-radius:12px}
+.test-banner{background:#facc15;color:#111;font:700 15px/1.3 system-ui,sans-serif;text-align:center;padding:8px 12px;position:relative;z-index:99999}
+@media print{.appicon,.test-banner{display:none!important}}</style>
 </head>
 <body>
-<header class="top"><div class="toprow"><h1>Cycle Step · CA5 · Seconde</h1><a class="cbtn" href="https://yannickdartois-hue.github.io/Carnet-Step-/">📱 Carnet élève</a></div><p>Lycée G. Pompidou · 8 séances de 70 min · 35 élèves · gymnase de type C</p><nav id="nav" aria-label="Sections"></nav></header>
+<header class="top"><div class="toprow"><h1><img class="appicon" src="icon-192.png" alt="" width="40" height="40">Cycle Step · CA5 · Seconde</h1><a class="cbtn" href="https://yannickdartois-hue.github.io/Carnet-Step-/">📱 Carnet élève</a></div><p>Lycée G. Pompidou · 8 séances de 70 min · 35 élèves · gymnase de type C</p><nav id="nav" aria-label="Sections"></nav></header>
 <main id="main"></main>
 <div id="printzone"></div>
 <script>
