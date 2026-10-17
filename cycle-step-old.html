@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Step">
+<meta name="theme-color" content="#7c3aed">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cycle step old</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--ink:#16202c;--muted:#5b6675;--line:#d9dee5;--accent:#0f766e;--accent-soft:#e6f4f2;--warn:#ea580c;--pD:#2563eb;--pG:#ea580c;--ok:#15803d;--chip:#eef1f5}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f141a;--surface:#18202a;--ink:#e6ebf1;--muted:#9aa6b4;--line:#2d3845;--accent:#2dd4bf;--accent-soft:#12302d;--warn:#fb923c;--pD:#60a5fa;--pG:#fb923c;--ok:#4ade80;--chip:#222c38}}
+:root[data-theme="dark"]{--bg:#0f141a;--surface:#18202a;--ink:#e6ebf1;--muted:#9aa6b4;--line:#2d3845;--accent:#2dd4bf;--accent-soft:#12302d;--warn:#fb923c;--pD:#60a5fa;--pG:#fb923c;--ok:#4ade80;--chip:#222c38}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header.top{background:var(--accent);color:#fff;padding:14px 16px 0}
+:root[data-theme="dark"] header.top, header.top{color:#fff}
+@media (prefers-color-scheme: dark){header.top{background:#115e59}}
+header.top h1{margin:0;font-size:20px;letter-spacing:.2px}
+header.top p{margin:2px 0 10px;opacity:.9;font-size:13px}
+nav#nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:thin;padding-bottom:0}
+nav#nav button{flex:none;border:0;background:rgba(255,255,255,.14);color:#fff;padding:8px 12px;border-radius:8px 8px 0 0;font:inherit;font-size:14px;cursor:pointer}
+nav#nav button.on{background:var(--bg);color:var(--ink);font-weight:600}
+main{max-width:1100px;margin:0 auto;padding:16px}
+h2{font-size:21px;margin:8px 0 10px}
+h3{font-size:17px;margin:20px 0 8px}
+h4{margin:0;font-size:16px}
+a{color:var(--accent)}
+.small{font-size:13px}.muted{color:var(--muted)}
+.btn{display:inline-block;border:1px solid var(--accent);background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;font:inherit;font-size:14px;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--accent)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.pill{display:inline-block;background:var(--chip);border-radius:999px;padding:2px 10px;font-size:12.5px;margin:0 4px 4px 0}
+.st-faite{background:#dcfce7;color:#14532d}.st-jour{background:#fef3c7;color:#78350f}.st-eval{background:#fee2e2;color:#7f1d1d}
+.sgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+@media (max-width:760px){.sgrid{grid-template-columns:repeat(4,1fr)}}
+.sbtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:8px 6px;text-align:left;cursor:pointer;font:inherit;min-width:0}
+.sbtn b{display:block;font-size:16px}.sbtn small{display:block;font-size:11.5px;color:var(--muted);line-height:1.2;overflow:hidden;text-overflow:ellipsis}
+.sbtn.on{outline:2px solid var(--accent);background:var(--accent-soft)}
+.sbtn.st-faite,.sbtn.st-jour,.sbtn.st-eval{color:inherit}.sbtn.st-faite b::after{content:" ✓";color:var(--ok)}.sbtn.st-jour b::after{content:" ●";color:var(--warn)}
+.seance{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:10px}
+.obj{font-size:15.5px}
+.tl{display:flex;gap:3px;margin:10px 0 4px;min-width:0}
+.tlb{min-width:0;border:0;border-radius:6px;padding:6px 4px;color:#fff;font:inherit;font-size:11.5px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15;text-align:center}
+.tlb span{overflow:hidden;text-overflow:ellipsis;max-width:100%;white-space:nowrap}
+.t-acc,.t-inst{background:#64748b}.t-ech{background:#0891b2}.t-ex{background:#0f766e}.t-sf{background:#c2410c}.t-bil{background:#6d28d9}
+@media (max-width:600px){.tlb span{display:none}}
+.prep{background:var(--accent-soft);border-radius:10px;padding:10px 12px;margin:10px 0}
+.prep ul{margin:6px 0 0;padding-left:18px}
+.note{background:var(--chip);border-radius:8px;padding:8px 10px}
+.defi{background:#fff7ed;color:#9a3412;border-radius:8px;padding:6px 10px;margin:4px 0 8px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .defi{background:#3a1d12;color:#fdba74}}
+.fiche{border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0;overflow:hidden;break-inside:avoid-page}
+.fiche header{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.fiche header h4{flex:1;min-width:180px}
+.tag{font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);font-weight:700}
+.dur{font-weight:700;color:var(--warn)}
+.fiche p{margin:5px 0}.fiche ol{margin:4px 0;padding-left:20px}
+.roles{border-left:3px solid var(--pD);padding-left:8px}
+.ok{border-left:3px solid var(--ok);padding-left:8px}
+.var{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13.5px}.var p{background:var(--chip);border-radius:6px;padding:6px 8px;margin:4px 0}
+@media (max-width:600px){.var{grid-template-columns:1fr}}
+.sch{float:right;width:46%;max-width:380px;margin:0 0 8px 12px}
+@media (max-width:700px){.sch{float:none;width:100%;margin:6px 0}}
+.sch-wide{margin-top:8px}
+svg{max-width:100%;height:auto;color:var(--ink)}
+.svgw{width:100%}
+.sv-step{fill:var(--chip);stroke:var(--muted);stroke-width:1.2}.sv-step.off{opacity:.35}
+.sv-zone{fill:none;stroke:var(--line);stroke-width:1.5}
+.sv-prof{fill:var(--accent)}.sv-lw{fill:#fff;font-size:8px;font-weight:600}
+.sv-l{fill:currentColor;font-size:8px}.sv-b{font-size:13px;font-weight:700}
+.sv-ar{fill:none;stroke:var(--muted);stroke-width:1.5}.sv-dim{stroke:var(--muted);stroke-dasharray:3 2}
+.sv-cell{fill:var(--chip);stroke:var(--line)}
+.minipas{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}.minipas svg{width:100%}
+.minipas figure{margin:0;text-align:center}.minipas figcaption{font-size:12.5px;font-weight:600}
+.bloc{border:1px solid var(--line);border-radius:10px;padding:10px;margin:10px 0;background:var(--surface)}
+.bloc-h{font-weight:700;margin-bottom:6px}
+.phr{display:flex;gap:5px}
+@media (max-width:640px){.phr{flex-wrap:wrap}.phr .ph{flex:1 1 40%!important}}
+.ph{border-left:4px solid var(--fc);background:var(--chip);border-radius:6px;padding:6px 8px;display:flex;flex-direction:column;min-width:0}
+.ph b{font-size:12px;color:var(--muted)}.ph small{color:var(--muted);font-size:11.5px}
+.fam{border-left:5px solid var(--fc);padding-left:8px}
+.pasgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:10px}
+@media (max-width:400px){.pasgrid{grid-template-columns:1fr}}
+.pas{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px;break-inside:avoid}
+.pas-h{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.pas-b{display:grid;grid-template-columns:1fr;gap:4px}.pas-svg{max-width:300px;margin:0 auto;width:100%}.pas-svg svg{width:100%}
+@media (max-width:400px){.pas-b{grid-template-columns:1fr}}
+.tps{margin:0;padding-left:18px;font-size:13px}
+.cx{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px}
+.cx th{text-align:left;width:92px;color:var(--muted);font-weight:600;vertical-align:top;padding:3px 4px}.cx td{padding:3px 4px;border-top:1px solid var(--line)}
+.tab{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0;background:var(--surface)}
+.tab th,.tab td{border:1px solid var(--line);padding:6px 7px;text-align:left;vertical-align:top}
+.tab th{background:var(--chip)}
+@media screen and (max-width:700px){.tab{display:block;overflow-x:auto;max-width:100%}}
+.filgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.fil{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--fc,var(--accent));border-radius:10px;padding:10px 12px}
+.fil h3{margin-top:2px}
+.calc{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:8px 0}
+.calc label{display:flex;flex-direction:column;font-size:13px;gap:3px}
+.calc input,.calc select{font:inherit;padding:7px 8px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-width:110px}
+.calc-out{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.calc-out div{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--fc,var(--accent));border-radius:10px;padding:8px 10px}
+.calc-out small{display:block;color:var(--muted)}.calc-out b{font-size:24px}
+.chrono{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;position:relative}
+#ch-sch{max-width:640px;margin:12px auto 0}
+.ch-tot{font-size:22px;font-variant-numeric:tabular-nums;color:var(--muted)}
+.chgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media (max-width:560px){.chgrid{grid-template-columns:1fr}}
+.chf{border-radius:12px;padding:14px;background:var(--fc);color:#fff;transition:filter .3s}
+.chf.rec{filter:saturate(.25) brightness(.9)}
+.chf .chk{display:block;font-size:13px;opacity:.9}.chf small{display:block;font-weight:700;letter-spacing:.5px}
+.chf b{font-size:clamp(40px,11vw,76px);font-variant-numeric:tabular-nums;line-height:1.05}
+.ch-fc{margin-top:10px;background:var(--warn);color:#fff;font-weight:800;font-size:28px;border-radius:10px;padding:8px;animation:bl 1s infinite}
+@keyframes bl{50%{opacity:.6}}
+.timer{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:var(--ink);color:var(--bg);border-radius:14px;padding:10px 14px;display:flex;gap:12px;align-items:center;z-index:9;box-shadow:0 6px 20px rgba(0,0,0,.25);max-width:calc(100% - 32px)}
+.timer b{font-size:30px;font-variant-numeric:tabular-nums}.timer span{font-size:13px}
+.ech .checks{columns:2;font-size:14px}
+@media (max-width:520px){.ech .checks{columns:1}}
+.pg{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0}
+.cn td{height:44px}.lines{line-height:2}.pg p{overflow-wrap:anywhere}
+.rpe td{font-size:12px;text-align:center}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.cbtn{background:#fff;color:var(--accent);font-weight:700;border-radius:999px;padding:7px 14px;text-decoration:none;font-size:14px}
+.hero{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--accent);border-radius:12px;padding:16px;margin:8px 0 14px}
+.hero h2{margin-top:0}.btn.big{font-size:16px;padding:11px 16px}
+.agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.acard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column}
+.acard h3{margin:6px 0 4px;font-size:16px}.acard p{margin:4px 0}.acard .actions{margin-top:auto;padding-top:6px}
+.acard-h{display:flex;justify-content:space-between;align-items:center}.anum{font-weight:800;font-size:20px;color:var(--accent)}
+.dlist{display:flex;flex-wrap:wrap;gap:8px}
+#printzone{display:none}
+body.printmode #printzone{display:block;padding:0 8px}
+@media print{
+  @page{size:A4;margin:11mm}
+  body{background:#fff;color:#000;font-size:10pt}
+  :root{--surface:#fff;--ink:#000;--muted:#444;--line:#999;--chip:#f0f0f0;--accent-soft:#eef7f5}
+  header.top,nav,main,.noprint,.timer{display:none!important}
+  body.printmode main,body.printmode header.top{display:none!important}
+  #printzone{display:block!important}
+  .seance{border:0;padding:0;margin:0;break-before:page}
+  .seance:first-child{break-before:auto}
+  .fiche{break-inside:auto;border-color:#999}
+  .fiche header{break-after:avoid}
+  svg,figure,.bloc,.var,.ok,tr{break-inside:avoid}
+  .minipas{grid-template-columns:repeat(4,1fr)}
+  .pas-svg{max-width:210px}
+  .pas{font-size:9.5pt;padding:6px}
+  .tps{font-size:9pt}.cx{font-size:8.5pt}
+  .tlb{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pg{border:0;padding:0;break-after:page}
+  .pas{break-inside:avoid}
+  .pasgrid{display:block}
+  .pasgrid .pas{display:inline-block;width:49.2%;vertical-align:top;margin:0 0.6% 6px 0}
+  .pas-b{grid-template-columns:44% 1fr}
+  h3.fam{break-before:page}
+  h3.fam:first-of-type{break-before:auto}
+  .pas-svg{max-width:170px}
+  .sch{width:42%}
+  h2,h3,h4{break-after:avoid}
+  a{color:#000;text-decoration:none}
+  .cn td{height:52px}
+}
+</style>
+
+<style id="appicon-css">.appicon{width:40px;height:40px;border-radius:9px;vertical-align:middle;margin:0 10px 0 0;box-shadow:0 1px 3px rgba(0,0,0,.25);flex:none;display:inline-block;object-fit:cover}
+.appicon.big{width:72px;height:72px;border-radius:16px;margin:0 auto 10px;display:block}
+.appicon.fill{width:100%;height:100%;margin:0;border-radius:inherit;box-shadow:none;display:block}
+.appicon.logoimg{width:46px;height:46px;margin:0;border-radius:12px}
+.test-banner{background:#facc15;color:#111;font:700 15px/1.3 system-ui,sans-serif;text-align:center;padding:8px 12px;position:relative;z-index:99999}
+@media print{.appicon,.test-banner{display:none!important}}</style>
+<link rel="stylesheet" href="eps-design.css">
+<style>:root{--sport:#7c3aed}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style id="step-socle">
+/* Step remis sur le socle commun des cycles (eps-design.css) :
+   mêmes couleurs, mêmes polices, même en-tête, même minutage que volley, badminton, demi-fond, tennis de table. */
+:root{--ink:var(--fg);--chip:var(--surface-2);--accent:#1f4fa8;--accent-soft:#e3ebf8;--accent-fg:#ffffff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:var(--fg);--chip:var(--surface-2);--accent:#7aa5f0;--accent-soft:#1b2a44;--accent-fg:#0f1620}}
+:root[data-theme="dark"]{--ink:var(--fg);--chip:var(--surface-2);--accent:#7aa5f0;--accent-soft:#1b2a44;--accent-fg:#0f1620}
+body{line-height:1.5}
+
+/* En-tête clair et compact, comme les autres cycles (plus de bandeau vert). */
+header.top,:root[data-theme="dark"] header.top{background:transparent!important;color:var(--fg)!important;max-width:1100px;margin:0 auto;padding:14px 16px 0}
+header.top p{color:var(--muted);opacity:1;font-size:var(--t-s);margin:6px 0 0}
+.cbtn{display:inline-flex;align-items:center;min-height:40px;border:1.5px solid var(--line);background:var(--surface);color:var(--accent);border-radius:10px;font-size:15px}
+nav#nav{flex-wrap:wrap;overflow:visible;gap:6px;margin-top:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+nav#nav button{border:1.5px solid var(--line);background:var(--surface);color:var(--fg);border-radius:10px;padding:8px 12px;font-size:15px;font-weight:600;min-height:42px}
+nav#nav button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+
+/* Titres et boutons. */
+h2{font-family:var(--font-display);font-size:clamp(28px,3.6vw,36px);line-height:1.05;text-wrap:balance}
+h3{font-family:var(--font-display);font-size:22px;line-height:1.15}
+.btn{display:inline-flex;align-items:center;min-height:44px;border:1.5px solid var(--accent);background:var(--accent);color:var(--accent-fg);border-radius:10px;font-size:15px;font-weight:600}
+.btn.ghost{background:var(--surface);border-color:var(--line);color:var(--fg)}
+.sgrid+.actions .btn{min-height:36px;font-size:var(--t-s);padding:4px 12px}
+.pill{font-size:var(--t-s);padding:3px 10px}
+.small{font-size:var(--t-s)}
+
+/* Séances : mêmes boutons que dans les autres cycles. */
+.sbtn{border:1.5px solid var(--line);min-height:52px;padding:8px 10px;border-radius:10px}
+.sbtn b{font-family:var(--font-display);font-size:var(--t-l);line-height:1}
+.sbtn{padding:8px}
+.sbtn small{font-size:13px;white-space:normal;overflow:visible;text-overflow:clip;-webkit-hyphens:auto;hyphens:auto}
+@media (max-width:700px){nav#nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}nav#nav button{flex:none}.sbtn small{font-size:13px}}
+.sbtn.on{outline:0;background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.sbtn.on small{color:var(--accent-fg);opacity:.85}
+.anum{font-family:var(--font-display);font-size:28px}
+.acard h3{font-size:22px}
+.hero{border-left-color:var(--sport)}
+
+/* Minutage : le contenu de chaque bloc est toujours écrit, la durée en gros. */
+.obj{font-size:17px}
+.tl{flex-wrap:wrap;gap:6px}
+.tlb{min-width:104px;align-items:flex-start;justify-content:flex-start;text-align:left;gap:2px;padding:8px 12px;border-radius:10px;font-size:var(--t-s);line-height:1.25}
+.tlb b{order:-1;font-family:var(--font-display);font-size:26px;line-height:1;white-space:nowrap}
+.tlb span{display:block!important;white-space:normal!important;overflow:visible!important}
+
+/* Fiches d'exercice. */
+.fiche h4{font-family:var(--font-display);font-size:24px;line-height:1.1}
+.fiche .tag{font-size:13px}
+.dur{font-size:var(--t-s)}
+.fiche p,.fiche li{font-size:16.5px}
+.var{font-size:15px}
+.ph b,.ph small,.cx,.minipas figcaption,.tps{font-size:var(--t-s)}
+.tab{font-size:15px}
+.calc-out b,.kpi b{font-family:var(--font-display)}
+
+/* Mode gymnase. */
+body.gym header.top p,body.gym .actions:has([data-print]){display:none!important}
+body.gym .seance h2{font-size:clamp(34px,5vw,44px)}
+body.gym .obj{font-size:19px}
+body.gym .tlb{min-width:140px;font-size:16px}
+body.gym .tlb b{font-size:34px}
+body.gym .fiche h4{font-size:30px}
+body.gym .fiche p,body.gym .fiche li{font-size:19px}
+body.gym .sch{float:none;width:100%;max-width:600px;margin:8px 0}
+body.gym nav#nav button,body.gym .sbtn{min-height:56px}
+</style>
+<script src="eps-commun.js" defer></script>
+</head>
+<body>
+<header class="top"><div class="toprow"><h1><img class="appicon" src="icon-192.png" alt="" width="40" height="40">Cycle Step · CA5 · Seconde</h1><a class="cbtn" href="./" style="margin-right:8px">‹ Écran de cours</a><a class="cbtn" href="https://yannickdartois-hue.github.io/Carnet-Step-/">📱 Carnet élève</a></div><p>Lycée G. Pompidou · 8 séances de 70 min · 35 élèves · gymnase de type C</p><nav id="nav" aria-label="Sections"></nav></header>
+<main id="main"></main>
+<div id="printzone"></div>
+<script src="step-donnees.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const LS = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+/* ---------- Fiches ---------- */
+function ficheHTML(f, n){
+  const wide = /^(pas|bloc)/.test(f.schema||"");
+  const sch = f.schema ? `<div class="${wide ? "sch-wide" : "sch"}">${schema(f.schema)}</div>` : "";
+  return `<article class="fiche">
+  <header><span class="tag">${esc(f.cat)}</span><h4>${n ? n+". " : ""}${esc(f.titre)}</h4><span class="dur">${f.duree} min</span></header>
+  ${f.defi ? `<p class="defi">🎯 Défi : <b>${esc(f.defi)}</b></p>` : ""}
+  ${wide ? "" : sch}
+  <p><b>Dispositif.</b> ${esc(f.dispo)}</p>
+  <p class="roles"><b>Rôle de chacun.</b> ${esc(f.roles)}</p>
+  <p><b>Déroulement.</b></p><ol>${f.deroul.map(d => `<li>${esc(d)}</li>`).join("")}</ol>
+  <p><b>Consignes et critères de réalisation.</b> ${esc(f.crit)}</p>
+  <p class="ok"><b>Critère de réussite.</b> ${esc(f.reussite)}</p>
+  <div class="var"><p><b>−</b> ${esc(f.moins)}</p><p><b>+</b> ${esc(f.plus)}</p></div>
+  ${wide ? sch : ""}
+  </article>`;
+}
+function statut(i){
+  const today = LS.get("step2de_jour", -1);
+  if(i === 7 && today !== 7) return ["eval","Évaluation"];
+  if(today < 0) return ["avenir","À venir"];
+  if(i < today) return ["faite","Faite"];
+  if(i === today) return ["jour","Aujourd’hui"];
+  return ["avenir","À venir"];
+}
+function seanceHTML(i, forPrint){
+  const S = SEANCES[i], st = statut(i);
+  const tot = S.tl.reduce((a,b)=>a+b[1],0);
+  const frise = `<div class="tl">` + S.tl.map((b,k) => `<button class="tlb t-${b[2]}" style="flex:${b[1]}" data-min="${b[1]}" data-lab="${esc(b[0])}" title="Lancer un minuteur de ${b[1]} min"><span>${esc(b[0])}</span><b>${b[1]}′</b></button>`).join("") + `</div><p class="small muted">Total : ${tot} min de pratique${forPrint ? "" : " · touche un bloc pour lancer un minuteur"}.</p>`;
+  let h = `<section class="seance" id="sea-${S.id}">
+  <div class="sea-top"><span class="pill st-${st[0]}">${st[1]}</span><span class="pill">${S.bpm} BPM</span><span class="pill">Pas : ${esc(S.pas)}</span></div>
+  <h2>${S.id} · ${esc(S.titre)}</h2>
+  <p class="obj"><b>Objectif.</b> ${esc(S.obj)}</p>
+  ${frise}
+  <div class="prep"><b>Ce que la séance prépare pour l’évaluation</b><ul>${S.prepare.map(p => `<li>${esc(p)}</li>`).join("")}</ul></div>`;
+  if(S.accueil) h += `<p class="note"><b>Accueil.</b> ${esc(S.accueil)}</p>`;
+  if(S.install) h += `<p class="note"><b>Installation.</b> ${esc(S.install)}</p>`;
+  S.fiches.forEach((f,k) => h += ficheHTML(f, k+1));
+  if(!forPrint) h += `<div class="actions noprint"><button class="btn" data-today="${i}">Marquer comme séance du jour</button><button class="btn" data-print="${S.id}">Imprimer cette séance</button><a class="btn ghost" href="pdf/2de-step-${S.id}.pdf">PDF</a></div>`;
+  return h + `</section>`;
+}
+
+/* ---------- Vues ---------- */
+const VIEWS = {};
+let curSeance = Math.max(0, LS.get("step2de_jour", 0));
+VIEWS.accueil = () => {
+  const cards = SEANCES.map((S,i) => { const ex = S.fiches.filter(f => !/^(Bilan|Échauffement)/.test(f.cat)).map(f => esc(f.titre)); const st = statut(i);
+    return `<article class="acard"><div class="acard-h"><span class="anum">${S.id}</span><span class="pill st-${st[0]}">${st[1]}</span></div>
+     <h3>${esc(S.titre)}</h3><p>${esc(S.obj)}</p><p class="small muted">Au programme : ${ex.join(" · ")}</p>
+     <div class="actions"><button class="btn" data-open-s="${i}">Voir la séance</button><a class="btn ghost" href="pdf/2de-step-${S.id}.pdf" download>PDF</a></div></article>`; }).join("");
+  return `<section class="hero">
+   <div><h2>Cycle Step · CA5 · Seconde</h2><p>Apprendre à s’entraîner à partir de 3 blocs de step : 2 filières (A bref et intense, B long et modéré), zones de fréquence cardiaque, curseurs d’intensité, carnet numérique et défis à partir de S3.</p>
+    <div class="actions"><a class="btn big" href="https://yannickdartois-hue.github.io/Carnet-Step-/">📱 Carnet élève</a><a class="btn ghost big" href="pdf/2de-step-cycle-complet.pdf" download>Cycle complet (PDF)</a></div></div>
+  </section>
+  <div class="agrid">${cards}</div>
+  <h3>Documents à télécharger</h3>
+  <div class="dlist">${[["Répertoire des 16 pas","repertoire-16-pas"],["Carnet d’entraînement papier","carnet"],["Fiche coach","fiche-coach"],["Échauffement en binôme","echauffement-binome"],["Version personnelle des blocs","version-perso"],["Table des zones de FC","table-fc"],["Défis du cycle","defis"],["Grille d’évaluation","evaluation"],["Banque de formes de travail","banque"]].map(d=>`<a class="btn ghost" href="pdf/2de-step-${d[1]}.pdf" download>${d[0]}</a>`).join("")}</div>`;
+};
+VIEWS.seances = () => {
+  const btns = SEANCES.map((S,i) => { const st = statut(i); return `<button class="sbtn ${i===curSeance?"on":""} st-${st[0]}" data-s="${i}"><b>${S.id}</b><small>${esc(S.titre.split(":")[0].split(",")[0])}</small></button>`; }).join("");
+  return `<div class="sgrid noprint">${btns}</div>
+  <div class="actions noprint"><button class="btn ghost" data-print="cycle">Imprimer le cycle complet</button><a class="btn ghost" href="pdf/2de-step-cycle-complet.pdf">PDF du cycle</a></div>
+  ${seanceHTML(curSeance)}`;
+};
+VIEWS.pas = () => {
+  let h = `<h2>Répertoire des 16 pas</h2>
+  <p>Seize pas en quatre familles. Chaque pas se complexifie avec les <b>curseurs</b> : bras, propulsion, amplitude, hauteur. Ce sont les 16 pas des 3 blocs de l’équipe. Les descriptions sont écrites pied droit directeur ; le côté gauche est le miroir. Définitions : fiches du stage step 2007 (I. Boulnois, P. Kogut) et précisions de l’équipe.</p>
+  <div class="actions noprint"><button class="btn ghost" data-print="pas">Imprimer le répertoire</button><a class="btn ghost" href="pdf/2de-step-repertoire-16-pas.pdf">PDF</a></div>`;
+  Object.keys(FAMILLES).forEach(fk => {
+    h += `<h3 class="fam" style="--fc:${FAMILLES[fk].c}">${esc(FAMILLES[fk].nom)}</h3><div class="pasgrid">`;
+    PAS.filter(p => p.fam === fk).forEach(p => {
+      h += `<article class="pas"><div class="pas-h"><b>${p.id}. ${esc(p.nom)}</b><span class="pill">${p.tps} temps</span></div>
+      <div class="pas-b"><div class="pas-svg">${svgPas(p)}</div><div><ol class="tps">${p.desc.map(d => `<li>${esc(d)}</li>`).join("")}</ol>${p.note ? `<p class="small">${esc(p.note)}</p>` : ""}<p class="small"><b>${esc(p.pied)}.</b> ${esc(p.reperes)}</p></div></div>
+      <p class="small"><b>Critères.</b> ${esc(p.crit)}</p>
+      <table class="cx"><tr><th>Bras</th><td>${esc(p.bras)}</td></tr><tr><th>Saut</th><td>${esc(p.saut)}</td></tr><tr><th>Amplitude</th><td>${esc(p.amp)}</td></tr><tr><th>Version basse</th><td>${esc(p.basse)}</td></tr></table></article>`;
+    });
+    h += `</div>`;
+  });
+  h += `<h3>Pas complémentaires</h3><p>Les pas de la routine d’échauffement (kick, élévation, side, mambo, run, genou sauté, 3 talons, step touch) servent pour l’échauffement, les récupérations actives et la version personnelle des blocs. <b>Tape en bas</b> (monte D, monte G, descends D, touche G au sol sans poids) sert à changer de pied directeur.</p>`;
+  return h;
+};
+VIEWS.blocs = () => `<h2>Blocs imposés et curseurs</h2>
+  <p>La chorégraphie de l’équipe : 3 blocs de 32 temps. Chaque bloc se fait départ pied droit puis en miroir, départ pied gauche.</p>
+  ${BLOCS.map(b => htmlBloc(b.id) + `<p class="small">Appris en ${b.seance}.</p>`).join("")}
+  <h3>Les curseurs d’intensité</h3>
+  <p>Chaque curseur va de 0 à 2. Le total (0 à 8) est le <b>réglage</b> noté dans le carnet, par exemple « H1 B2 P2 A1 = 6 ». Le tempo est le même pour toute la classe (une seule sono) : on règle l’intensité avec les curseurs, pas avec la musique.</p>
+  <table class="tab"><tr><th>Curseur</th><th>0</th><th>1</th><th>2</th></tr>${CURSEURS.map(c => `<tr><th>${c.k} · ${c.nom}</th>${c.n.map(x => `<td>${esc(x)}</td>`).join("")}</tr>`).join("")}</table>
+  ${svgCurseurs()}
+  <p><b>Leviers de coordination</b> (changer de pas, orientations, bras dissociés, contretemps) : ils rendent le bloc plus difficile, mais font peu monter la FC. Ce ne sont pas des leviers d’intensité en CA5.</p>
+  <h3>Version personnelle des blocs (S5)</h3>
+  <ul><li>Remplacer au plus 2 pas par bloc, par un pas de <b>même durée</b> qui laisse <b>le même pied libre</b> : talons, kick, élévation ou tap up à la place d’un genou ; basique à la place d’un V step ; back sans saut à la place du back ; jumping jack sans saut pour la filière B.</li><li>Choisir ses curseurs selon sa filière : A = propulsion et bras d’abord ; B = amplitude et bras, sans saut.</li></ul>
+  <div class="actions noprint"><button class="btn ghost" data-print="perso">Imprimer la fiche « version personnelle »</button><a class="btn ghost" href="pdf/2de-step-version-perso.pdf">PDF</a></div>`;
+VIEWS.fc = () => `<h2>Filières et fréquence cardiaque</h2>
+  <div class="filgrid">${["A","B"].map(k => { const F = FILIERES[k]; return `<article class="fil" style="--fc:${F.c}"><h3>${esc(F.nom)}</h3><p>${esc(F.but)}</p><table class="cx"><tr><th>Zone</th><td>${F.zone[0]} à ${F.zone[1]} % de la FC de réserve</td></tr><tr><th>Format</th><td>${esc(F.format)}</td></tr><tr><th>Ressenti</th><td>${esc(F.rpe)}</td></tr><tr><th>Parole</th><td>${esc(F.parole)}</td></tr><tr><th>Curseurs</th><td>${esc(F.curseurs)}</td></tr></table></article>`; }).join("")}</div>
+  ${svgFiliere("eval")}
+  <h3>Calculateur</h3>
+  <div class="calc"><label>Âge <input id="c-age" type="number" min="13" max="20" value="15"></label><label>Sexe <select id="c-sexe"><option value="F">Fille</option><option value="G">Garçon</option></select></label><label>FC de repos <input id="c-rep" type="number" min="40" max="110" value="70"></label></div>
+  <div id="c-out" class="calc-out"></div>
+  <p class="small muted">FC max = 220 − âge (garçons) ou 226 − âge (filles), formule des référentiels académiques. FC de réserve (FCR) = FC max − FC de repos. FC cible = FC de repos + FCR × %. C’est une estimation : les ressentis et le test de la parole restent les repères de contrôle.</p>
+  <h3>Protocole oxymètre</h3>
+  <ol><li>Arrêt → doigt (index ou majeur, main relâchée) dans l’oxymètre <b>dans les 5 s</b>.</li><li>Lire la FC quand elle est stable, vers 10 s. Ignorer la saturation (SpO₂).</li><li>Noter la valeur lue, puis le ressenti (0 à 10) et le test de la parole.</li></ol>
+  <p class="note"><b>Limite.</b> L’oxymètre lit mal en mouvement et la FC baisse dès l’arrêt : la valeur lue est un peu sous la FC d’effort. C’est pourquoi la zone A commence à 80 % (et non 85 %) et que l’on vise des zones de 15 points, pas ±5 pulsations. Avec un oxymètre pour deux, le second mesuré a une valeur encore plus basse : alterner qui mesure en premier à chaque série.</p>
+  <div class="actions noprint"><button class="btn ghost" data-print="table">Imprimer la table des FC cibles</button><a class="btn ghost" href="pdf/2de-step-table-fc.pdf">PDF</a></div>`;
+VIEWS.chrono = () => `<h2>Chrono des filières</h2>
+  <p>Un seul chrono pour toute la classe : les deux filières démarrent et finissent ensemble. Bip court avant chaque changement, bip long au changement, bandeau « MESURE FC » pendant 15 s.</p>
+  <div class="calc noprint"><label>Format <select id="ch-fmt">${Object.keys(FORMATS).map(k => `<option value="${k}">${esc(FORMATS[k].nom)}</option>`).join("")}</select></label><button class="btn" id="ch-go">Démarrer</button><button class="btn ghost" id="ch-rst">Remettre à zéro</button></div>
+  <div class="chrono"><div class="ch-tot" id="ch-tot">00:00</div><div class="chgrid"><div class="chf" id="ch-A" style="--fc:${FILIERES.A.c}"></div><div class="chf" id="ch-B" style="--fc:${FILIERES.B.c}"></div></div><div id="ch-fc" class="ch-fc" hidden>MESURE FC</div></div>
+  <div id="ch-sch"></div>`;
+VIEWS.echauff = () => `<h2>Échauffements</h2>
+  <h3>Routine guidée (S1 à S3, à suivre en miroir)</h3>
+  <table class="tab"><tr><th>Partie</th><th>Pas</th><th>Temps</th></tr>
+  <tr><td>Au sol</td><td>Marche sur la musique</td><td>16</td></tr><tr><td>Au sol</td><td>Genoux · talons-fesses · step touch</td><td>8 + 8 + 8</td></tr><tr><td>Au sol + bras</td><td>Step touch bras · talon-fesse bras · step out · genou alterné · double genou</td><td>5 × 8</td></tr>
+  <tr><td>Sur le step</td><td>Touche step croisé · basique · tap up · genou · talons fesse · kick · élévation · side · run · genou sauté · 3 genoux · 3 talons · V step</td><td>13 × 8</td></tr><tr><td>Pas plus complexes</td><td>Mambo · pendulum · jazz square · back / hélico</td><td>4 chacun</td></tr><tr><td>Fin</td><td>Étirements dynamiques : mollets, quadriceps, ischio-jambiers</td><td>15 s chacun</td></tr></table>
+  <p class="small">D’après la routine de l’équipe. Méthode d’apprentissage : 8 temps au sol / 8 sur le step, puis 4/4, puis 2/2 = basic. Repères d’espace : « côté sono », « côté tribune ».</p>
+  <h3>Échauffement autonome en binôme (S5 à S8)</h3>
+  <div class="actions noprint"><button class="btn ghost" data-print="echauff">Imprimer la fiche</button><a class="btn ghost" href="pdf/2de-step-echauffement-binome.pdf">PDF</a></div>
+  ${echauffFiche()}`;
+function echauffFiche(){
+  return `<div class="ech"><table class="tab"><tr><th>Phase</th><th>Contenu</th><th>Durée</th></tr>
+  <tr><td>1 · Au sol</td><td>Marche, genoux, talons-fesses, step touch avec bras</td><td>2-3 min</td></tr>
+  <tr><td>2 · Sur le step</td><td>Basique, V step, tap up, genou, talons (8 temps chacun)</td><td>2-3 min</td></tr>
+  <tr><td>3 · Blocs</td><td>Blocs 1, 2, 3 en version basse (curseurs à 0 ou 1)</td><td>2-3 min</td></tr>
+  <tr><td>4 · Filière</td><td>1 bloc au réglage de sa filière, puis FC</td><td>1 min</td></tr></table>
+  <p><b>Le coach coche :</b></p>
+  <ol class="checks"><li>Commence au sol</li><li>Monte sur le step après au moins 2 min</li><li>Mobilise chevilles, genoux, hanches</li><li>Ajoute les bras</li><li>Passe par les 3 blocs</li><li>Intensité progressive (pas de saut avant la phase 4)</li><li>Finit au réglage de sa filière</li><li>Mesure sa FC à la fin</li></ol>
+  <p><b>Règle :</b> 7 ou 8 critères → prêt. 5 ou 6 → refaire la phase manquante. 4 ou moins → reprendre la routine guidée.</p></div>`;
+}
+VIEWS.carnet = () => `<h2>Carnet d’entraînement et fiche coach</h2>
+  <p>Le carnet est la pièce centrale de l’AFL2 : une ligne par séance, et une décision à chaque fois.</p>
+  <div class="actions noprint"><button class="btn" data-print="carnet">Imprimer le carnet (2 pages)</button><a class="btn ghost" href="pdf/2de-step-carnet.pdf">PDF</a><button class="btn ghost" data-print="coach">Imprimer la fiche coach</button><a class="btn ghost" href="pdf/2de-step-fiche-coach.pdf">PDF</a></div>
+  ${carnetHTML()}${coachHTML()}`;
+function rpeTable(){
+  return `<table class="tab rpe"><tr><th>Ressenti</th><td>0-2 très facile</td><td>3-4 facile</td><td>5-6 moyen</td><td>7-8 dur</td><td>9-10 maximal</td></tr><tr><th>Parole</th><td>je chante</td><td>je parle facilement</td><td>phrases courtes</td><td>quelques mots</td><td>impossible</td></tr></table>`;
+}
+function carnetHTML(){
+  const rows = SEANCES.map(S => `<tr><th>${S.id}</th><td></td><td></td><td></td><td></td><td></td><td></td></tr>`).join("");
+  return `<div class="carnet"><div class="pg"><h3>Carnet d’entraînement · Step CA5 · Seconde</h3>
+  <p>Nom : ........................................ Prénom : ........................ Classe : ........ Binôme : ........................</p>
+  <table class="tab"><tr><th>FC de repos</th><td>Matin 1 : ......</td><td>Matin 2 : ......</td><td>Matin 3 : ......</td><td>Moyenne : ......</td></tr></table>
+  <p>FC max = 220 − âge (garçon) ou 226 − âge (fille) = ............ &nbsp; FC de réserve = FC max − FC repos = ............</p>
+  <table class="tab"><tr><th></th><th>% FCR</th><th>Calcul : FC repos + FCR × %</th><th>Ma zone</th></tr><tr><th>Zone A</th><td>80 à 95 %</td><td></td><td>...... à ......</td></tr><tr><th>Zone B</th><td>55 à 70 %</td><td></td><td>...... à ......</td></tr></table>
+  <p><b>Ma filière :</b> A ☐ &nbsp; B ☐ &nbsp; Mes 3 arguments (un ressenti, un chiffre, un projet) :</p><p class="lines">1. ..............................................................................................................<br>2. ..............................................................................................................<br>3. ..............................................................................................................</p>
+  ${rpeTable()}
+  <p class="small"><b>Réglage :</b> H hauteur · B bras · P propulsion · A amplitude, chacun de 0 à 2. Exemple : H1 B2 P2 A1 = 6.</p></div>
+  <div class="pg"><h3>Mes séances</h3><table class="tab cn"><tr><th>S</th><th>Format réalisé</th><th>Réglage H B P A = total</th><th>FC mesurées</th><th>Dans ma zone ?</th><th>Ressenti /10</th><th>Décision pour la prochaine fois</th></tr>${rows}</table>
+  <p class="small">S1 à S4 : on teste (pas encore de filière). À partir de S5 : une décision chiffrée à chaque séance (« j’étais sous ma zone → +1 propulsion »).</p></div></div>`;
+}
+function coachHTML(){
+  const r = n => Array.from({length:n},(_,i)=>`<tr><th>${i+1}</th><td></td><td></td><td></td><td></td><td></td><td></td></tr>`).join("");
+  return `<div class="pg coach"><h3>Fiche coach</h3><p>Coach : ........................ Pratiquant : ........................ Filière : A ☐ B ☐ Zone : ...... à ......</p>
+  <table class="tab cn"><tr><th>Mesure</th><th>FC lue</th><th>Dans la zone ?</th><th>Ressenti /10</th><th>Arrêts</th><th>Appuis / posture</th><th>Mon conseil (constat → action)</th></tr>${r(4)}</table>
+  <p class="small">A : mesure à la fin de chaque série. B : mesure à mi-série (arrêt 15 s) et en fin de série. Oxymètre dans les 5 s. Un conseil = un constat + une action : « Tu es à 162, sous ta zone → ajoute la propulsion ».</p></div>`;
+}
+function persoHTML(){
+  return `<div class="pg"><h3>Ma version personnelle des blocs</h3><p>Nom : ........................ Filière : A ☐ B ☐</p>` + BLOCS.map(b => `<table class="tab cn"><tr><th colspan="4">${esc(b.nom)}</th></tr><tr><th>Temps</th><th>Pas imposé</th><th>Mon remplacement (même durée, même pied libre)</th><th>Curseurs H B P A</th></tr>${(()=>{let c=0;return b.pas.map(p=>{const a=c+1;c+=p.t;return `<tr><td>${a}-${c}</td><td>${esc(p.nom)}</td><td></td><td></td></tr>`;}).join("");})()}</table>`).join("") + `<p class="small">Au plus 2 remplacements par bloc.</p></div>`;
+}
+VIEWS.eval = () => {
+  const deg = (n) => n === 4 ? ["0,5-1","1,5-2","2,5-3","3,5-4"] : n === 6 ? ["0,5-1,5","2-3","3,5-4,5","5-6"] : ["0-0,5","0,5-1","1-1,5","1,5-2"];
+  return `<h2>Évaluation (S8) · /20</h2>
+  <p>Grille de seconde construite sur les 3 AFL du CA5. AFL1 sur 12 points ; AFL2 + AFL3 sur 8 points, répartition choisie par l’élève en S4 : 4/4, 6/2 ou 2/6.</p>
+  <div class="actions noprint"><button class="btn" data-print="eval">Imprimer la grille</button><a class="btn ghost" href="pdf/2de-step-evaluation.pdf">PDF</a></div>
+  <div id="evalbox">${evalHTML(deg)}</div>`;
+};
+function evalHTML(deg){
+  deg = deg || (n => n === 4 ? ["0,5-1","1,5-2","2,5-3","3,5-4"] : n === 6 ? ["0,5-1,5","2-3","3,5-4,5","5-6"] : ["0-0,5","0,5-1","1-1,5","1,5-2"]);
+  return `<h3>AFL1 · S’engager pour obtenir les effets recherchés · /12</h3>
+  <table class="tab"><tr><th>Élément</th><th>Pts</th><th>Repères</th></tr>${EVAL.afl1.map(e => `<tr><th>${esc(e.el)}</th><td>${e.pts}</td><td>${e.rep.map(esc).join(" · ")}</td></tr>`).join("")}</table>
+  <h3>AFL2 · S’entraîner · AFL3 · Coopérer · /8</h3>
+  <table class="tab"><tr><th></th><th>Degré 1</th><th>Degré 2</th><th>Degré 3</th><th>Degré 4</th></tr>
+  <tr><th>AFL2 (carnet, échauffement, régulation)</th>${EVAL.afl2.map(x=>`<td>${esc(x)}</td>`).join("")}</tr>
+  <tr><th>AFL3 (coach)</th>${EVAL.afl3.map(x=>`<td>${esc(x)}</td>`).join("")}</tr>
+  ${[2,4,6].map(n => `<tr><th>Sur ${n} points</th>${deg(n).map(x=>`<td>${x}</td>`).join("")}</tr>`).join("")}</table>
+  <h3>Lien avec les séances</h3>
+  <table class="tab"><tr><th>Élément évalué</th><th>Séances qui le préparent</th><th>Statut</th></tr>${EVAL.lien.map(l => `<tr><td>${esc(l[0])}</td><td>${esc(l[1])}</td><td>${l[0]==="Respect du plan" ? "à surveiller : une seule séance" : "ok"}</td></tr>`).join("")}</table>
+  <p class="small">Différence avec la grille d’Edith (carnet /4, fourchette /2, pratique /14) : ici la zone de FC pèse plus (3 points sur 8 en « produire ») et l’analyse est notée à part, comme dans les référentiels de Grenoble et de Strasbourg. Les critères « pas plus ou moins complexes » ne sont pas notés : ils relèvent du CA3.</p>`;
+}
+VIEWS.defis = () => `<h2>Défis (à partir de S3)</h2>
+  <p>Trois défis seulement, choisis parce qu’ils récompensent la <b>précision</b> (prévoir sa FC, être dans sa zone), jamais l’intensité. Les points et les badges sont calculés automatiquement dans le carnet numérique.</p>
+  <div class="actions noprint"><button class="btn" data-print="defis">Imprimer la fiche des défis</button><a class="btn ghost" href="pdf/2de-step-defis.pdf">PDF</a></div>
+  ${defisHTML()}`;
+function svgCible(){
+  return `<svg viewBox="0 0 320 120" class="svgw" role="img" aria-label="Cible : la zone de fréquence cardiaque">
+  <rect x="20" y="40" width="280" height="30" rx="4" fill="var(--chip)" stroke="var(--line)"/>
+  <rect x="60" y="40" width="200" height="30" fill="var(--accent-soft)" stroke="var(--accent)"/>
+  <rect x="140" y="40" width="40" height="30" fill="var(--accent)"/>
+  <text x="160" y="60" text-anchor="middle" class="sv-lw">3 pts</text><text x="100" y="60" text-anchor="middle" class="sv-l">2 pts</text><text x="220" y="60" text-anchor="middle" class="sv-l">2 pts</text>
+  <text x="40" y="60" text-anchor="middle" class="sv-l">1 pt</text><text x="280" y="60" text-anchor="middle" class="sv-l">1 pt</text>
+  <text x="60" y="32" text-anchor="middle" class="sv-l">bas de la zone</text><text x="260" y="32" text-anchor="middle" class="sv-l">haut de la zone</text><text x="160" y="32" text-anchor="middle" class="sv-l">milieu ± 3</text>
+  <text x="20" y="88" class="sv-l">−5</text><text x="292" y="88" class="sv-l">+5</text><text x="160" y="104" text-anchor="middle" class="sv-l">au-delà de 5 pulsations hors zone : 0 point</text></svg>`;
+}
+function defisHTML(){
+  return `<div class="filgrid">${DEFIS.map(d=>`<article class="fil"><h3>${esc(d.nom)}</h3><p class="small muted">${esc(d.seances)}</p><p>${esc(d.regle)}</p><p><b>Points.</b> ${esc(d.points)}</p><p class="small"><b>Pourquoi.</b> ${esc(d.pourquoi)}</p><p class="small muted">Inspiré de : ${esc(d.source)}</p></article>`).join("")}</div>
+  <h3>Pile dans la cible</h3>${svgCible()}
+  <h3>Où les défis apparaissent</h3><table class="tab"><tr><th>Séance</th><th>Juste Pouls</th><th>Pile dans la cible</th><th>Badges</th></tr>
+  <tr><th>S3</th><td>présentation + effort long</td><td>—</td><td>Endurant</td></tr><tr><th>S4</th><td>curseurs, viser le milieu, essai</td><td>—</td><td>Mémoire</td></tr>
+  <tr><th>S5</th><td>chaque mesure</td><td>séance de filière</td><td>Devin, Régleur</td></tr><tr><th>S6</th><td>pronostic du coach</td><td>passages coachés</td><td>Coach</td></tr>
+  <tr><th>S7</th><td>chaque mesure</td><td>répétition générale</td><td>—</td></tr><tr><th>S8</th><td>—</td><td>— (évaluation individuelle, sans points)</td><td>bilan des badges</td></tr></table>
+  <h3>Fiche de score du binôme (version papier)</h3>
+  <table class="tab cn"><tr><th>Séance</th><th>Annonce</th><th>FC lue</th><th>Juste Pouls</th><th>Zone</th><th>Pile dans la cible</th></tr>${["S3","S3","S4","S4","S5","S5","S5","S6","S6","S7","S7","S7"].map(x=>`<tr><th>${x}</th><td></td><td></td><td></td><td></td><td></td></tr>`).join("")}</table>
+  <p class="small">Juste Pouls : ± 5 = 3 pts · ± 10 = 1 pt. Pile dans la cible : milieu ± 3 = 3 pts · dans la zone = 2 pts · à 5 près = 1 pt.</p>`;
+}
+VIEWS.banque = () => `<h2>Banque de formes de travail</h2>
+  <p>Pour remplacer une situation ou prolonger le cycle. Niveaux N1 (débutant) à N3.</p>
+  <table class="tab"><tr><th>Forme</th><th>Filière</th><th>Niveau</th><th>Format</th><th>Effet recherché</th><th>Remplace</th></tr>${BANQUE.map(b => `<tr><th>${esc(b.nom)}</th><td>${b.fil}</td><td>${b.niv}</td><td>${esc(b.format)}</td><td>${esc(b.effet)}</td><td>${esc(b.remplace)}</td></tr>`).join("")}</table>
+  <div class="actions noprint"><a class="btn ghost" href="pdf/2de-step-banque.pdf">PDF</a></div>`;
+VIEWS.diff = () => `<h2>Différenciation</h2>
+  <div class="filgrid">
+  <article class="fil"><h3>Élève en difficulté de coordination</h3><ul><li>Faire chaque pas 8 temps au sol avant le step.</li><li>Garder le même pas 8 temps (2 fois) au lieu de 4.</li><li>Remplacer les pas de profil par des pas de face.</li><li>Se placer au 1er rang, face à l’enseignant.</li></ul></article>
+  <article class="fil"><h3>Élève à l’aise</h3><ul><li>Bras dissociés (bras/bras ou bras/jambes).</li><li>Pas avancés de l’équipe (pendule, reverse, T step) en remplacement.</li><li>Meneur de rangée à l’échauffement.</li><li>Filière A : 4e série si FC de reprise sous 120.</li></ul></article>
+  <article class="fil"><h3>Aptitude partielle (genou, dos, cheville)</h3><ul><li>Pas de filière A (sauf avis médical favorable).</li><li>Step sans réhausse, bande de moquette ou zone au sol de la taille du step.</li><li>Aucun saut ; leviers bras et amplitude seulement.</li><li>Zone de FC fixée selon l’avis médical (référentiel adapté de Grenoble).</li></ul></article>
+  <article class="fil"><h3>Élève dispensé</h3><ul><li>Gestion du chrono et de la sono.</li><li>Coach supplémentaire avec fiche coach.</li><li>Observateur sécurité (pied entier, descente arrière).</li><li>Distribution et récupération des oxymètres.</li></ul></article></div>`;
+VIEWS.reperes = () => `<h2>Repères de spécialiste</h2>
+  <h3>Sécurité</h3><ul><li>Chaussures obligatoires, jamais pieds nus.</li><li>Pied entier posé à plat au centre ; jambe d’appui légèrement fléchie à la réception ; pas de bruit.</li><li>On ne descend jamais en avant, on ne monte jamais en arrière, on ne saute jamais en descendant.</li><li>1 m de vide autour de chaque step ; on reste près de son step à la descente.</li><li>Rotation : alléger l’appui, le regard précède.</li><li>Douleur au genou ou au dos : version basse, pas de filière A.</li></ul>
+  <h3>Musique</h3><ul><li>Morceaux phrasés en 32 temps (« step music 128-132 BPM »). 125-128 BPM en S1, 130-132 BPM ensuite. Au-dessus de 135 BPM, la pose du pied entier devient difficile pour des débutants.</li><li>Gymnase de type C, grand volume : regrouper les steps sur une moitié, sono orientée vers les élèves, enceinte surélevée. Un micro-casque évite de crier par-dessus la musique.</li></ul>
+  <h3>Guidage (cueing)</h3><ul><li>Annoncer le pas suivant pendant les 4 derniers temps (« 4, 3, V step, go »).</li><li>En miroir : l’enseignant fait le côté opposé pour que les élèves partent du bon pied.</li><li>Gestes : doigts levés = nombre de répétitions ; pouce derrière l’épaule = on recommence ; doigt qui tourne = tour ; V avec les doigts = V step.</li><li>Remplacer peu à peu la parole par les gestes.</li></ul>
+  <h3>Repères d’entraînement</h3><table class="tab"><tr><th></th><th>Grenoble</th><th>Strasbourg 2025</th><th>Ce cycle (2de)</th></tr><tr><th>Bref et intense</th><td>&gt; 85 % FCR, 14-22 min, séries ≤ 4 min</td><td>&gt; 180 bpm, séries ≤ 3 min</td><td>80-95 % FCR, 4 × 4 min, r 3 min</td></tr><tr><th>Long et soutenu</th><td>70-85 % FCR, 20-26 min</td><td>160-180 bpm</td><td>— (non retenu en 2de)</td></tr><tr><th>Modéré et prolongé</th><td>50-65 % FCR, 25-30 min</td><td>&lt; 160 bpm, séries &gt; 7 min</td><td>55-70 % FCR, 2 × 10 min, r 5 min</td></tr><tr><th>Tempo</th><td>130-145 BPM</td><td>128-135 BPM</td><td>130-132 BPM</td></tr></table>
+  <h3>Sources</h3><ul>${SOURCES.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])}</a></li>`).join("")}<li>Chorégraphie et routine d’échauffement de l’équipe ; dossier du stage step 2007 (I. Boulnois, P. Kogut) pour les définitions de pas.</li><li>Documents d’Edith (cycle step 2nde, formule de Karvonen, carnet de suivi) et documents de l’équipe (routine d’échauffement, blocs).</li></ul>`;
+
+/* ---------- Navigation ---------- */
+const TABS = [["accueil","Accueil"],["seances","Séances"],["pas","16 pas"],["blocs","Blocs et curseurs"],["fc","Filières et FC"],["chrono","Chrono"],["echauff","Échauffements"],["carnet","Carnet"],["defis","Défis"],["eval","Évaluation"],["banque","Banque"],["diff","Différenciation"],["reperes","Repères et sources"]];
+let curTab = LS.get("step2de_tab2","accueil");
+function render(){
+  $("#nav").innerHTML = TABS.map(t => `<button class="${t[0]===curTab?"on":""}" data-tab="${t[0]}">${t[1]}</button>`).join("");
+  $("#main").innerHTML = (VIEWS[curTab] || VIEWS.seances)();
+  if(curTab === "fc") calc();
+  if(curTab === "chrono") chronoInit();
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("button"); if(!b) return;
+  if(b.dataset.tab){ curTab = b.dataset.tab; LS.set("step2de_tab2", curTab); stopChrono(); render(); window.scrollTo(0,0); }
+  else if(b.dataset.openS !== undefined){ curSeance = +b.dataset.openS; curTab = "seances"; LS.set("step2de_tab2", curTab); render(); window.scrollTo(0,0); }
+  else if(b.dataset.s !== undefined){ curSeance = +b.dataset.s; render(); }
+  else if(b.dataset.today !== undefined){ LS.set("step2de_jour", +b.dataset.today); render(); }
+  else if(b.dataset.print){ doPrint(b.dataset.print); }
+  else if(b.classList.contains("tlb")){ startTimer(+b.dataset.min, b.dataset.lab); }
+  else if(b.id === "tm-close"){ stopTimer(); }
+  else if(b.id === "ch-go"){ toggleChrono(); }
+  else if(b.id === "ch-rst"){ resetChrono(); }
+  else if(b.id === "go-today"){ const t = LS.get("step2de_jour",-1); if(t >= 0){ curSeance = t; curTab = "seances"; render(); } }
+});
+document.addEventListener("input", e => { if(e.target.closest(".calc") && curTab === "fc") calc(); });
+document.addEventListener("change", e => { if(e.target.id === "ch-fmt") resetChrono(); if(e.target.closest(".calc") && curTab === "fc") calc(); });
+
+/* ---------- Calculateur ---------- */
+function zones(age, sexe, rep){
+  const max = (sexe === "G" ? 220 : 226) - age, fcr = max - rep;
+  const z = p => Math.round(rep + fcr*p/100);
+  return {max, fcr, A:[z(80), z(95)], B:[z(55), z(70)]};
+}
+function calc(){
+  const age = +$("#c-age").value || 15, sexe = $("#c-sexe").value, rep = +$("#c-rep").value || 70;
+  const z = zones(age, sexe, rep);
+  $("#c-out").innerHTML = `<div><small>FC max</small><b>${z.max}</b></div><div><small>FC de réserve</small><b>${z.fcr}</b></div><div style="--fc:${FILIERES.A.c}"><small>Zone A</small><b>${z.A[0]}-${z.A[1]}</b></div><div style="--fc:${FILIERES.B.c}"><small>Zone B</small><b>${z.B[0]}-${z.B[1]}</b></div>`;
+}
+function tableFC(){
+  let h = `<div class="pg"><h3>Table des zones de FC · Step 2de</h3><p class="small">Zone A = 80 à 95 % de la FC de réserve · Zone B = 55 à 70 % · FC max = 220 − âge (garçons), 226 − âge (filles).</p>`;
+  [15,16].forEach(age => {
+    h += `<table class="tab ft"><tr><th rowspan="2">FC repos</th><th colspan="2">Filles ${age} ans</th><th colspan="2">Garçons ${age} ans</th></tr><tr><th>Zone A</th><th>Zone B</th><th>Zone A</th><th>Zone B</th></tr>`;
+    for(let r=50;r<=95;r+=5){ const f = zones(age,"F",r), g = zones(age,"G",r); h += `<tr><th>${r}</th><td>${f.A.join("-")}</td><td>${f.B.join("-")}</td><td>${g.A.join("-")}</td><td>${g.B.join("-")}</td></tr>`; }
+    h += `</table>`;
+  });
+  return h + `</div>`;
+}
+
+/* ---------- Minuteur de frise ---------- */
+let tmInt = null;
+function beep(f, d){ try{ const C = window.AudioContext || window.webkitAudioContext; window._ac = window._ac || new C(); const o = _ac.createOscillator(), g = _ac.createGain(); o.frequency.value = f; o.connect(g); g.connect(_ac.destination); g.gain.value = .25; o.start(); o.stop(_ac.currentTime + d); }catch(e){} }
+const mmss = s => String(Math.floor(s/60)).padStart(2,"0") + ":" + String(Math.max(0,s%60)).padStart(2,"0");
+function startTimer(min, lab){
+  stopTimer(); let s = min*60;
+  const el = document.createElement("div"); el.id = "timer"; el.className = "timer";
+  el.innerHTML = `<span id="tm-l">${esc(lab)}</span><b id="tm-v">${mmss(s)}</b><button class="btn ghost" id="tm-close">Fermer</button>`;
+  document.body.appendChild(el);
+  tmInt = setInterval(() => { s--; const v = $("#tm-v"); if(v) v.textContent = mmss(s); if(s === 60) beep(660,.2); if(s <= 0){ beep(880,.8); clearInterval(tmInt); } }, 1000);
+}
+function stopTimer(){ clearInterval(tmInt); const t = $("#timer"); if(t) t.remove(); }
+
+/* ---------- Chrono des filières ---------- */
+let CH = {run:false, t:0, int:null, fmt:"eval"};
+function segs(k, fmt){
+  const F = FORMATS[fmt][k], out = []; let t = 0;
+  F.e.forEach((d,i) => { out.push({type:"E", n:i+1, a:t, b:t+d*60}); t += d*60; if(i < F.e.length-1 && F.r){ out.push({type:"R", n:i+1, a:t, b:t+F.r*60}); t += F.r*60; } });
+  return out;
+}
+function measurePoints(fmt){
+  const pts = [];
+  ["A","B"].forEach(k => segs(k, fmt).forEach(s => { if(s.type === "E"){ pts.push(s.b); if(k === "B") pts.push(Math.round((s.a+s.b)/2)); } }));
+  return pts;
+}
+function chronoInit(){ CH.fmt = $("#ch-fmt").value; $("#ch-fmt").value = CH.fmt; drawChrono(); $("#ch-sch").innerHTML = svgFiliere(CH.fmt); }
+function drawChrono(){
+  const tot = $("#ch-tot"); if(!tot) return;
+  tot.textContent = mmss(CH.t);
+  let fc = false;
+  ["A","B"].forEach(k => {
+    const S = segs(k, CH.fmt), end = S[S.length-1].b;
+    const cur = S.find(s => CH.t >= s.a && CH.t < s.b);
+    let h;
+    if(!cur) h = CH.t >= end ? `<b>Terminé</b>` : `<b>Prêt</b>`;
+    else h = `<small>${cur.type === "E" ? "EFFORT " + cur.n + " / " + FORMATS[CH.fmt][k].e.length : "RÉCUPÉRATION ACTIVE"}</small><b>${mmss(cur.b - CH.t)}</b>`;
+    $("#ch-"+k).innerHTML = `<span class="chk">${FILIERES[k].nom}</span>${h}`;
+    $("#ch-"+k).classList.toggle("rec", !!cur && cur.type === "R");
+  });
+  measurePoints(CH.fmt).forEach(p => { if(CH.t >= p && CH.t < p + 15) fc = true; });
+  $("#ch-fc").hidden = !fc;
+}
+function tick(){
+  CH.t++;
+  const ch = new Set(); ["A","B"].forEach(k => segs(k, CH.fmt).forEach(s => ch.add(s.b)));
+  const pts = measurePoints(CH.fmt);
+  if([...ch].some(b => b - CH.t > 0 && b - CH.t <= 3) || pts.some(p => p - CH.t > 0 && p - CH.t <= 3)) beep(660,.12);
+  if(ch.has(CH.t) || pts.includes(CH.t)) beep(990,.6);
+  const end = Math.max(...["A","B"].map(k => { const S = segs(k, CH.fmt); return S[S.length-1].b; }));
+  if(CH.t >= end){ stopChrono(); beep(990,1.2); }
+  drawChrono();
+}
+let wake = null;
+function toggleChrono(){
+  if(CH.run){ stopChrono(); return; }
+  CH.run = true; CH.int = setInterval(tick, 1000); beep(880,.2);
+  try{ if(navigator.wakeLock) navigator.wakeLock.request("screen").then(w => wake = w).catch(()=>{}); }catch(e){}
+  $("#ch-go").textContent = "Pause";
+}
+function stopChrono(){ clearInterval(CH.int); CH.run = false; const g = $("#ch-go"); if(g) g.textContent = "Reprendre"; try{ if(wake) wake.release(); }catch(e){} }
+function resetChrono(){ stopChrono(); CH.t = 0; const g = $("#ch-go"); if(g) g.textContent = "Démarrer"; chronoInit(); }
+
+/* ---------- Impression ---------- */
+function printContent(kind){
+  if(/^S\d$/.test(kind)) return seanceHTML(SEANCES.findIndex(s => s.id === kind), true);
+  if(kind === "cycle"){
+    const som = `<section class="seance"><h2>Cycle Step CA5 · Seconde · 8 séances de 70 min</h2><table class="tab"><tr><th>Séance</th><th>Titre</th><th>BPM</th></tr>${SEANCES.map(S => `<tr><th>${S.id}</th><td>${esc(S.titre)}</td><td>${S.bpm}</td></tr>`).join("")}</table><p class="small">Filière A : 4 × 4 min, r 3 min, 80-95 % FCR. Filière B : 2 × 10 min, r 5 min, 55-70 % FCR. Les deux formats durent 25 min.</p>${svgSalle()}</section>`;
+    return som + SEANCES.map((S,i) => seanceHTML(i, true)).join("");
+  }
+  if(kind === "pas") return `<section>${VIEWS.pas()}</section>`;
+  if(kind === "carnet") return carnetHTML();
+  if(kind === "coach") return coachHTML() + coachHTML();
+  if(kind === "echauff") return `<div class="pg"><h3>Échauffement autonome en binôme</h3>${echauffFiche()}</div>`;
+  if(kind === "eval") return `<div class="pg"><h2>Évaluation Step CA5 · Seconde · /20</h2>${evalHTML()}</div>`;
+  if(kind === "table") return tableFC();
+  if(kind === "perso") return persoHTML();
+  if(kind === "banque") return `<section>${VIEWS.banque()}</section>`;
+  if(kind === "defis") return `<div class="pg"><h2>Défis du cycle step · S3 à S8</h2>${defisHTML()}</div>`;
+  return "";
+}
+function doPrint(kind){
+  $("#printzone").innerHTML = printContent(kind);
+  document.body.classList.add("printing");
+  setTimeout(() => { window.print(); document.body.classList.remove("printing"); $("#printzone").innerHTML = ""; }, 60);
+}
+
+/* ---------- Démarrage ---------- */
+(function(){
+  const q = new URLSearchParams(location.search).get("print");
+  if(q){ document.body.classList.add("printmode"); $("#printzone").innerHTML = printContent(q); return; }
+  render();
+})();
+
+if("serviceWorker" in navigator && location.protocol==="https:"){navigator.serviceWorker.register("sw.js").catch(()=>{})}
+</script>
+</body>
+</html>

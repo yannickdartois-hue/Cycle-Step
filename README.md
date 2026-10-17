@@ -25,3 +25,9 @@ Remplacer les fichiers, puis changer le numéro de version dans `sw.js` (`cycle-
 - Couleur de l'activité : ligne `<style>:root{--sport:…}</style>` dans `index.html`.
 - **Mode gymnase** : bouton en haut à droite. Actif par défaut quand l'appli est ouverte depuis l'écran d'accueil de l'iPad.
 - `index-old.html` : la version d'avant, gardée telle quelle (bandeau jaune « Ancienne version »).
+
+## Organisation des pages (18/10/2026)
+- `index.html` : **la version actuelle du cycle**, l'écran de cours (même famille que le cycle de volley-ball). Séances S1 à S8 dans le bandeau, déroulé ajustable (rallonger, zapper, remplacer), schémas des pas et des blocs, variables, défis, tempo.
+- `cycle-step-old.html` : l'outil précédent, gardé par sécurité. Les 16 pas, blocs et curseurs, filières et FC, chrono, échauffements, carnet, défis, évaluation, banque et PDF y restent (bouton « Préparer »). C'est là qu'on marque la séance du jour.
+- `step-donnees.js` : pas, blocs, filières, séances et schémas, partagés par les deux pages.
+- `polices/` : polices embarquées pour le hors ligne (licence SIL OFL).
