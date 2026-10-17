@@ -175,6 +175,76 @@ body.printmode #printzone{display:block;padding:0 8px}
 .appicon.logoimg{width:46px;height:46px;margin:0;border-radius:12px}
 .test-banner{background:#facc15;color:#111;font:700 15px/1.3 system-ui,sans-serif;text-align:center;padding:8px 12px;position:relative;z-index:99999}
 @media print{.appicon,.test-banner{display:none!important}}</style>
+<link rel="stylesheet" href="eps-design.css">
+<style>:root{--sport:#7c3aed}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style id="step-socle">
+/* Step remis sur le socle commun des cycles (eps-design.css) :
+   mêmes couleurs, mêmes polices, même en-tête, même minutage que volley, badminton, demi-fond, tennis de table. */
+:root{--ink:var(--fg);--chip:var(--surface-2);--accent:#1f4fa8;--accent-soft:#e3ebf8;--accent-fg:#ffffff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:var(--fg);--chip:var(--surface-2);--accent:#7aa5f0;--accent-soft:#1b2a44;--accent-fg:#0f1620}}
+:root[data-theme="dark"]{--ink:var(--fg);--chip:var(--surface-2);--accent:#7aa5f0;--accent-soft:#1b2a44;--accent-fg:#0f1620}
+body{line-height:1.5}
+
+/* En-tête clair et compact, comme les autres cycles (plus de bandeau vert). */
+header.top,:root[data-theme="dark"] header.top{background:transparent!important;color:var(--fg)!important;max-width:1100px;margin:0 auto;padding:14px 16px 0}
+header.top p{color:var(--muted);opacity:1;font-size:var(--t-s);margin:6px 0 0}
+.cbtn{display:inline-flex;align-items:center;min-height:40px;border:1.5px solid var(--line);background:var(--surface);color:var(--accent);border-radius:10px;font-size:15px}
+nav#nav{flex-wrap:wrap;overflow:visible;gap:6px;margin-top:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+nav#nav button{border:1.5px solid var(--line);background:var(--surface);color:var(--fg);border-radius:10px;padding:8px 12px;font-size:15px;font-weight:600;min-height:42px}
+nav#nav button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+
+/* Titres et boutons. */
+h2{font-family:var(--font-display);font-size:clamp(28px,3.6vw,36px);line-height:1.05;text-wrap:balance}
+h3{font-family:var(--font-display);font-size:22px;line-height:1.15}
+.btn{display:inline-flex;align-items:center;min-height:44px;border:1.5px solid var(--accent);background:var(--accent);color:var(--accent-fg);border-radius:10px;font-size:15px;font-weight:600}
+.btn.ghost{background:var(--surface);border-color:var(--line);color:var(--fg)}
+.sgrid+.actions .btn{min-height:36px;font-size:var(--t-s);padding:4px 12px}
+.pill{font-size:var(--t-s);padding:3px 10px}
+.small{font-size:var(--t-s)}
+
+/* Séances : mêmes boutons que dans les autres cycles. */
+.sbtn{border:1.5px solid var(--line);min-height:52px;padding:8px 10px;border-radius:10px}
+.sbtn b{font-family:var(--font-display);font-size:var(--t-l);line-height:1}
+.sbtn{padding:8px}
+.sbtn small{font-size:13px;white-space:normal;overflow:visible;text-overflow:clip;-webkit-hyphens:auto;hyphens:auto}
+@media (max-width:700px){nav#nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}nav#nav button{flex:none}.sbtn small{font-size:13px}}
+.sbtn.on{outline:0;background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.sbtn.on small{color:var(--accent-fg);opacity:.85}
+.anum{font-family:var(--font-display);font-size:28px}
+.acard h3{font-size:22px}
+.hero{border-left-color:var(--sport)}
+
+/* Minutage : le contenu de chaque bloc est toujours écrit, la durée en gros. */
+.obj{font-size:17px}
+.tl{flex-wrap:wrap;gap:6px}
+.tlb{min-width:104px;align-items:flex-start;justify-content:flex-start;text-align:left;gap:2px;padding:8px 12px;border-radius:10px;font-size:var(--t-s);line-height:1.25}
+.tlb b{order:-1;font-family:var(--font-display);font-size:26px;line-height:1;white-space:nowrap}
+.tlb span{display:block!important;white-space:normal!important;overflow:visible!important}
+
+/* Fiches d'exercice. */
+.fiche h4{font-family:var(--font-display);font-size:24px;line-height:1.1}
+.fiche .tag{font-size:13px}
+.dur{font-size:var(--t-s)}
+.fiche p,.fiche li{font-size:16.5px}
+.var{font-size:15px}
+.ph b,.ph small,.cx,.minipas figcaption,.tps{font-size:var(--t-s)}
+.tab{font-size:15px}
+.calc-out b,.kpi b{font-family:var(--font-display)}
+
+/* Mode gymnase. */
+body.gym header.top p,body.gym .actions:has([data-print]){display:none!important}
+body.gym .seance h2{font-size:clamp(34px,5vw,44px)}
+body.gym .obj{font-size:19px}
+body.gym .tlb{min-width:140px;font-size:16px}
+body.gym .tlb b{font-size:34px}
+body.gym .fiche h4{font-size:30px}
+body.gym .fiche p,body.gym .fiche li{font-size:19px}
+body.gym .sch{float:none;width:100%;max-width:600px;margin:8px 0}
+body.gym nav#nav button,body.gym .sbtn{min-height:56px}
+</style>
+<script src="eps-commun.js" defer></script>
 </head>
 <body>
 <header class="top"><div class="toprow"><h1><img class="appicon" src="icon-192.png" alt="" width="40" height="40">Cycle Step · CA5 · Seconde</h1><a class="cbtn" href="https://yannickdartois-hue.github.io/Carnet-Step-/">📱 Carnet élève</a></div><p>Lycée G. Pompidou · 8 séances de 70 min · 35 élèves · gymnase de type C</p><nav id="nav" aria-label="Sections"></nav></header>
