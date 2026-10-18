@@ -245,6 +245,9 @@ body.gym .sch{float:none;width:100%;max-width:600px;margin:8px 0}
 body.gym nav#nav button,body.gym .sbtn{min-height:56px}
 </style>
 <script src="eps-commun.js" defer></script>
+<script>/* Ouvert depuis l’écran de cours (bouton Outils) : on ne garde que le contenu de l’outil. */
+try{if(window.self!==window.top)document.documentElement.classList.add('outil')}catch(e){document.documentElement.classList.add('outil')}</script>
+<style>html.outil .wrap>header,html.outil .wrap>nav,html.outil .wrap>.foot,html.outil body>header.top{display:none!important}html.outil .wrap{padding-top:12px}</style>
 </head>
 <body>
 <header class="top"><div class="toprow"><h1><img class="appicon" src="icon-192.png" alt="" width="40" height="40">Cycle Step · CA5 · Seconde</h1><a class="cbtn" href="./" style="margin-right:8px">‹ Écran de cours</a><a class="cbtn" href="https://yannickdartois-hue.github.io/Carnet-Step-/">📱 Carnet élève</a></div><p>Lycée G. Pompidou · 8 séances de 70 min · 35 élèves · gymnase de type C</p><nav id="nav" aria-label="Sections"></nav></header>
@@ -478,7 +481,8 @@ VIEWS.reperes = () => `<h2>Repères de spécialiste</h2>
 
 /* ---------- Navigation ---------- */
 const TABS = [["accueil","Accueil"],["seances","Séances"],["pas","16 pas"],["blocs","Blocs et curseurs"],["fc","Filières et FC"],["chrono","Chrono"],["echauff","Échauffements"],["carnet","Carnet"],["defis","Défis"],["eval","Évaluation"],["banque","Banque"],["diff","Différenciation"],["reperes","Repères et sources"]];
-let curTab = LS.get("step2de_tab2","accueil");
+const tabH = (location.hash.match(/^#tab-(\w+)/)||[])[1];
+let curTab = (tabH && TABS.some(t => t[0] === tabH)) ? tabH : LS.get("step2de_tab2","accueil");
 function render(){
   $("#nav").innerHTML = TABS.map(t => `<button class="${t[0]===curTab?"on":""}" data-tab="${t[0]}">${t[1]}</button>`).join("");
   $("#main").innerHTML = (VIEWS[curTab] || VIEWS.seances)();
