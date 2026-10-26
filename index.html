@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#7C3AED">
+<meta name="theme-color" content="#6d28d9">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Step">
 <link rel="apple-touch-icon" href="icon-180.png">
@@ -89,6 +89,17 @@ body.niv-s{--niv:var(--c-s);--niv-pale:var(--c-s-pale)}
 .pc.niv-p{--nivp:var(--c-p)}
 </style>
 <style>/* Lisibilité terrain : textes à 15 px minimum à l'écran ; tailles d'origine à l'impression. */@media print{:root{--fs-min:0px}}</style>
+<link rel="stylesheet" href="eps-charte-v1.css">
+<style>/* Charte v1 : couleur de l'activité et teinte de chaque cycle (calculées par construire.py) */
+:root{--act:#6d28d9;--act-fonce:#441987;--act-pale:#ede5fa;--act-sombre:#af89ea;--act-pale-sombre:#291e4a}
+:root{--c-s:#6d28d9;--c-s-pale:#ede5fa}
+body.niv-s{--niv:#6d28d9;--sur-niv:#ffffff;--niv-pale:var(--act-pale)}
+:root[data-theme="dark"] body.niv-s{--niv:#925ee2;--sur-niv:#0d1117}
+.cy button[data-cy=s].on{background:#6d28d9;color:#ffffff}
+:root[data-theme="dark"] .cy button[data-cy=s].on{background:#925ee2;color:#0d1117}
+.pc.niv-s .sc.jour{outline-color:var(--ligne)}
+.pc.niv-s{--nivp:#6d28d9}
+</style>
 </head>
 <body>
 <header class="barre">
