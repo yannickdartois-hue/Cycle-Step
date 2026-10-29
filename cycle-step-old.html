@@ -321,7 +321,7 @@ VIEWS.accueil = () => {
      <div class="actions"><button class="btn" data-open-s="${i}">Voir la séance</button><a class="btn ghost" href="pdf/2de-step-${S.id}.pdf" download>PDF</a></div></article>`; }).join("");
   return `<section class="hero">
    <div><h2>Cycle Step · CA5 · Seconde</h2><p>Apprendre à s’entraîner à partir de 3 blocs de step : 2 filières (A bref et intense, B long et modéré), zones de fréquence cardiaque, curseurs d’intensité, carnet numérique et défis à partir de S3.</p>
-    <div class="actions"><a class="btn big" href="https://yannickdartois-hue.github.io/Carnet-Step-/">📱 Carnet élève</a><a class="btn ghost big" href="pdf/2de-step-cycle-complet.pdf" download>Cycle complet (PDF)</a></div></div>
+    <div class="actions"><a class="btn big" href="https://yannickdartois-hue.github.io/Carnet-Step-/">📱 Carnet élève</a><a class="btn ghost big" href="https://yannickdartois-hue.github.io/Carnet-Step-/?demo">Démo du carnet</a><a class="btn ghost big" href="pdf/2de-step-cycle-complet.pdf" download>Cycle complet (PDF)</a></div></div>
   </section>
   <div class="agrid">${cards}</div>
   <h3>Documents à télécharger</h3>
@@ -343,10 +343,11 @@ VIEWS.pas = () => {
       h += `<article class="pas"><div class="pas-h"><b>${p.id}. ${esc(p.nom)}</b><span class="pill">${p.tps} temps</span></div>
       <div class="pas-b"><div class="pas-svg">${svgPas(p)}</div><div><ol class="tps">${p.desc.map(d => `<li>${esc(d)}</li>`).join("")}</ol>${p.note ? `<p class="small">${esc(p.note)}</p>` : ""}<p class="small"><b>${esc(p.pied)}.</b> ${esc(p.reperes)}</p></div></div>
       <p class="small"><b>Critères.</b> ${esc(p.crit)}</p>
-      <table class="cx"><tr><th>Bras</th><td>${esc(p.bras)}</td></tr><tr><th>Saut</th><td>${esc(p.saut)}</td></tr><tr><th>Amplitude</th><td>${esc(p.amp)}</td></tr><tr><th>Version basse</th><td>${esc(p.basse)}</td></tr></table></article>`;
+      <table class="cx"><tr><th>Bras</th><td>${esc(p.bras)}</td></tr><tr><th>Saut</th><td>${esc(p.saut)}</td></tr><tr><th>Amplitude</th><td>${esc(p.amp)}</td></tr><tr><th>Version basse</th><td>${esc(p.basse)}</td></tr></table>${p.vid ? `<p class="small vid noprint">▶ Vidéo (en ligne) : ${p.vid.map(v => `<a href="${v[1]}" target="_blank" rel="noopener">${esc(v[0])}</a>`).join(" · ")}</p>` : ""}</article>`;
     });
     h += `</div>`;
   });
+  h += `<details class="noprint"><summary><b>Autres vidéos de l’ancienne appli</b> (pas hors des 3 blocs, pour la version personnelle)</summary><p class="small">Ces vidéos demandent une connexion. Les noms sont ceux de l’ancienne appli. Ce sont des vidéos YouTube de l’époque : certaines peuvent avoir disparu.</p><p class="small">${VIDEOS_AUTRES.map(v => `<a href="https://youtu.be/${v[1]}" target="_blank" rel="noopener">${esc(v[0])}</a>`).join(" · ")}</p></details>`;
   h += `<h3>Pas complémentaires</h3><p>Les pas de la routine d’échauffement (kick, élévation, side, mambo, run, genou sauté, 3 talons, step touch) servent pour l’échauffement, les récupérations actives et la version personnelle des blocs. <b>Tape en bas</b> (monte D, monte G, descends D, touche G au sol sans poids) sert à changer de pied directeur.</p>`;
   return h;
 };
@@ -445,8 +446,8 @@ function evalHTML(deg){
   <table class="tab"><tr><th>Élément évalué</th><th>Séances qui le préparent</th><th>Statut</th></tr>${EVAL.lien.map(l => `<tr><td>${esc(l[0])}</td><td>${esc(l[1])}</td><td>${l[0]==="Respect du plan" ? "à surveiller : une seule séance" : "ok"}</td></tr>`).join("")}</table>
   <p class="small">Différence avec la grille d’Edith (carnet /4, fourchette /2, pratique /14) : ici la zone de FC pèse plus (3 points sur 8 en « produire ») et l’analyse est notée à part, comme dans les référentiels de Grenoble et de Strasbourg. Les critères « pas plus ou moins complexes » ne sont pas notés : ils relèvent du CA3.</p>`;
 }
-VIEWS.defis = () => `<h2>Défis (à partir de S3)</h2>
-  <p>Trois défis seulement, choisis parce qu’ils récompensent la <b>précision</b> (prévoir sa FC, être dans sa zone), jamais l’intensité. Les points et les badges sont calculés automatiquement dans le carnet numérique.</p>
+VIEWS.defis = () => `<h2>Défis du cycle</h2>
+  <p><b>S2 et S3 : trois défis de coordination</b> (réussi / pas encore, cochés dans le carnet) pendant la phase où l’on mémorise les blocs. <b>À partir de S3 : trois défis de fréquence cardiaque</b>, choisis parce qu’ils récompensent la <b>précision</b> (prévoir sa FC, être dans sa zone), jamais l’intensité. Les points et les badges sont calculés automatiquement dans le carnet numérique.</p>
   <div class="actions noprint"><button class="btn" data-print="defis">Imprimer la fiche des défis</button><a class="btn ghost" href="pdf/2de-step-defis.pdf">PDF</a></div>
   ${defisHTML()}`;
 function svgCible(){
@@ -460,12 +461,14 @@ function svgCible(){
   <text x="20" y="88" class="sv-l">−5</text><text x="292" y="88" class="sv-l">+5</text><text x="160" y="104" text-anchor="middle" class="sv-l">au-delà de 5 pulsations hors zone : 0 point</text></svg>`;
 }
 function defisHTML(){
-  return `<div class="filgrid">${DEFIS.map(d=>`<article class="fil"><h3>${esc(d.nom)}</h3><p class="small muted">${esc(d.seances)}</p><p>${esc(d.regle)}</p><p><b>Points.</b> ${esc(d.points)}</p><p class="small"><b>Pourquoi.</b> ${esc(d.pourquoi)}</p><p class="small muted">Inspiré de : ${esc(d.source)}</p></article>`).join("")}</div>
+  const card = d => `<article class="fil"><h3>${esc(d.nom)}</h3><p class="small muted">${esc(d.seances)}</p><p>${esc(d.regle)}</p><p><b>Réussite.</b> ${esc(d.points)}</p><p class="small"><b>Pourquoi.</b> ${esc(d.pourquoi)}</p><p class="small muted">Inspiré de : ${esc(d.source)}</p></article>`;
+  return `<h3>Défis de coordination · S2 et S3</h3><div class="filgrid">${DEFIS_COORD.map(card).join("")}</div><div style="max-width:420px;margin:8px auto">${svgRonde()}</div>
+  <h3>Défis de fréquence cardiaque · à partir de S3</h3><div class="filgrid">${DEFIS.map(d=>`<article class="fil"><h3>${esc(d.nom)}</h3><p class="small muted">${esc(d.seances)}</p><p>${esc(d.regle)}</p><p><b>Points.</b> ${esc(d.points)}</p><p class="small"><b>Pourquoi.</b> ${esc(d.pourquoi)}</p><p class="small muted">Inspiré de : ${esc(d.source)}</p></article>`).join("")}</div>
   <h3>Pile dans la cible</h3>${svgCible()}
   <h3>Où les défis apparaissent</h3><table class="tab"><tr><th>Séance</th><th>Juste Pouls</th><th>Pile dans la cible</th><th>Badges</th></tr>
-  <tr><th>S3</th><td>présentation + effort long</td><td>—</td><td>Endurant</td></tr><tr><th>S4</th><td>curseurs, viser le milieu, essai</td><td>—</td><td>Mémoire</td></tr>
-  <tr><th>S5</th><td>chaque mesure</td><td>séance de filière</td><td>Devin, Régleur</td></tr><tr><th>S6</th><td>pronostic du coach</td><td>passages coachés</td><td>Coach</td></tr>
-  <tr><th>S7</th><td>chaque mesure</td><td>répétition générale</td><td>—</td></tr><tr><th>S8</th><td>—</td><td>— (évaluation individuelle, sans points)</td><td>bilan des badges</td></tr></table>
+  <tr><th>S3</th><td>présentation + effort long</td><td>—</td><td>Endurant</td></tr><tr><th>S4</th><td>curseurs, viser le milieu, essai</td><td>—</td><td>Mémoire, Chef d’orchestre</td></tr>
+  <tr><th>S5</th><td>chaque mesure</td><td>séance de filière</td><td>Devin, Régleur, Chef d’orchestre</td></tr><tr><th>S6</th><td>pronostic du coach</td><td>passages coachés</td><td>Coach, Chef d’orchestre</td></tr>
+  <tr><th>S7</th><td>chaque mesure</td><td>répétition générale</td><td>Chef d’orchestre</td></tr><tr><th>S8</th><td>—</td><td>— (évaluation individuelle, sans points)</td><td>bilan des badges</td></tr></table>
   <h3>Fiche de score du binôme (version papier)</h3>
   <table class="tab cn"><tr><th>Séance</th><th>Annonce</th><th>FC lue</th><th>Juste Pouls</th><th>Zone</th><th>Pile dans la cible</th></tr>${["S3","S3","S4","S4","S5","S5","S5","S6","S6","S7","S7","S7"].map(x=>`<tr><th>${x}</th><td></td><td></td><td></td><td></td><td></td></tr>`).join("")}</table>
   <p class="small">Juste Pouls : ± 5 = 3 pts · ± 10 = 1 pt. Pile dans la cible : milieu ± 3 = 3 pts · dans la zone = 2 pts · à 5 près = 1 pt.</p>`;
@@ -611,7 +614,7 @@ function printContent(kind){
   if(kind === "table") return tableFC();
   if(kind === "perso") return persoHTML();
   if(kind === "banque") return `<section>${VIEWS.banque()}</section>`;
-  if(kind === "defis") return `<div class="pg"><h2>Défis du cycle step · S3 à S8</h2>${defisHTML()}</div>`;
+  if(kind === "defis") return `<div class="pg"><h2>Défis du cycle step · S2 à S8</h2>${defisHTML()}</div>`;
   return "";
 }
 function doPrint(kind){

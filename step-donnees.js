@@ -12,7 +12,7 @@ const FAMILLES = {
   F4:{nom:"Tourner", c:"#c2410c"}
 };
 const PAS = [
- {id:1, nom:"Basique", fam:"F1", tps:4, pied:"Garde le même pied directeur",
+ {id:1, vid:[["Basic","https://youtu.be/vevx4Voh0NM"]], nom:"Basique", fam:"F1", tps:4, pied:"Garde le même pied directeur",
   desc:["Monte pied droit au centre du step","Monte pied gauche à côté","Descends pied droit derrière, à 20 cm du step","Assemble pied gauche"],
   reperes:"Face au step, au milieu, dans l’axe.",
   crit:"Pied entier posé à plat, sans bruit. Jambe d’appui qui pousse jusqu’en haut. On amortit en descendant.",
@@ -21,7 +21,7 @@ const PAS = [
   amp:"Réhausse ; extension complète de la jambe d’appui en haut.",
   basse:"Marche sur place au sol, ou step sans réhausse.",
   pos:[[1,"D",108,60],[2,"G",92,60],[3,"D",108,96],[4,"G",92,96]]},
- {id:2, nom:"V step", fam:"F1", tps:4, pied:"Garde le même pied directeur",
+ {id:2, vid:[["V-step","https://youtu.be/4v0D0GMiCPs"]], nom:"V step", fam:"F1", tps:4, pied:"Garde le même pied directeur",
   desc:["Monte pied droit sur le bord droit","Monte pied gauche sur le bord gauche (les jambes forment un V)","Descends pied droit au centre","Assemble pied gauche"],
   reperes:"En montant j’écarte, en descendant je resserre.",
   crit:"Pieds entiers en diagonale sur les bords, talons vers l’intérieur. Genoux dans l’axe des pieds.",
@@ -30,7 +30,7 @@ const PAS = [
   amp:"Écart maximal aux deux bords, descente plus fléchie.",
   basse:"V au sol (pas en avant écarté, retour serré).",
   pos:[[1,"D",138,60],[2,"G",62,60],[3,"D",108,96],[4,"G",92,96]]},
- {id:3, nom:"Pendule", fam:"F1", tps:4, pied:"Garde le même pied directeur",
+ {id:3, vid:[["Pendulum","https://youtu.be/TasEMv3ac5k"],["Knee-up pendulum (variante)","https://youtu.be/O0ACR1G7tw4"]], nom:"Pendule", fam:"F1", tps:4, pied:"Garde le même pied directeur",
   desc:["Monte pied droit au centre","Écarte la jambe gauche sur le côté","et : chassé — le pied gauche vient se poser sur le step et chasse le pied droit, qui se soulève","Descends pied droit","Descends pied gauche"],
   reperes:"Le chassé se fait sur le « et » entre 2 et 3 : on compte « 1, 2 et 3, 4 ». Il remplace le basique au début du bloc 2.",
   crit:"Réception pied entier sur le chassé, buste droit, pas de bruit. On ne saute pas en descendant.",
@@ -40,7 +40,7 @@ const PAS = [
   basse:"Basique avec une élévation latérale, sans chassé.",
   pos:[[1,"D",108,60],[2,"G",66,60,"e"],["et","G",92,60],["et","D",134,60,"e"],[3,"D",108,96],[4,"G",92,96]],
   note:"Temps comptés : 1, 2, et, 3, 4."},
- {id:4, nom:"Jazz square", fam:"F1", tps:4, pied:"Garde le même pied directeur",
+ {id:4, vid:[["Jazz square","https://youtu.be/QWsHyrm-WE8"]], nom:"Jazz square", fam:"F1", tps:4, pied:"Garde le même pied directeur",
   desc:["Au sol : pied droit croise devant le pied gauche","Pied gauche recule","Pied droit se pose à droite","Pied gauche revient à côté"],
   reperes:"Les pieds dessinent un carré au sol, derrière le step. Pas de liaison et de récupération active.",
   crit:"Poids bien transféré à chaque pas, hanches souples, regard devant.",
@@ -69,7 +69,7 @@ const PAS = [
   basse:"Sur le step sans saut : pas écarté, pas serré (temps 3 à 6).",
   pos:[[1,"D",108,60],[4,"D",108,60],[6,"D",108,60],[2,"G",92,60],[4,"G",92,60],[6,"G",92,60],[3,"D",144,60],[5,"D",144,60],[3,"G",56,60],[5,"G",56,60],[7,"D",108,96],[8,"G",92,96]],
   note:"Pieds écartés aux temps 3 et 5, serrés aux temps 4 et 6."},
- {id:7, nom:"Tap up", fam:"F2", tps:4, pied:"Change de pied directeur",
+ {id:7, vid:[["Tap up","https://youtu.be/Nx1iTlfYzuE"]], nom:"Tap up", fam:"F2", tps:4, pied:"Change de pied directeur",
   desc:["Monte pied droit au centre","Touche le step avec la pointe du pied gauche, sans poids","Descends pied gauche","Assemble pied droit"],
   reperes:"Le pied qui touche repart en premier au temps suivant.",
   crit:"Pied d’appui entier, la pointe touche sans poids, buste gainé.",
@@ -78,7 +78,7 @@ const PAS = [
   amp:"Monter plus haut sur l’appui (extension complète).",
   basse:"Touche alternée sur le step, sans monter.",
   pos:[[1,"D",108,60],[2,"G",92,60,"t"],[3,"G",92,96],[4,"D",108,96]]},
- {id:8, nom:"Genou", fam:"F2", tps:4, pied:"Change de pied directeur",
+ {id:8, vid:[["Knee-up","https://youtu.be/03PAqqhJG_Q"]], nom:"Genou", fam:"F2", tps:4, pied:"Change de pied directeur",
   desc:["Monte pied droit au centre","Pousse sur la jambe droite et monte le genou gauche","Descends pied gauche","Assemble pied droit"],
   reperes:"« Genou G » = genou gauche levé (on monte pied droit). Genou à hauteur de hanche.",
   crit:"Pied entier, jambe d’appui tendue en haut, buste droit, pas de dos rond.",
@@ -87,7 +87,7 @@ const PAS = [
   amp:"Genou au-dessus de la hanche.",
   basse:"Genou au sol, sans monter.",
   pos:[[1,"D",108,60],[2,"G",92,60,"e"],[3,"G",92,96],[4,"D",108,96]]},
- {id:9, nom:"Talons", fam:"F2", tps:4, pied:"Change de pied directeur",
+ {id:9, vid:[["Heel-up","https://youtu.be/9usyyucoQkw"]], nom:"Talons", fam:"F2", tps:4, pied:"Change de pied directeur",
   desc:["Monte pied droit au centre","Pousse sur la jambe droite et monte le talon gauche à la fesse","Descends pied gauche","Assemble pied droit"],
   reperes:"« Talons G » = talon gauche à la fesse, puis « Talons D » repart pied gauche.",
   crit:"Buste droit, genou de la jambe levée orienté vers le sol, pied entier sur le step.",
@@ -96,7 +96,7 @@ const PAS = [
   amp:"Talon jusqu’à la fesse, extension complète de l’appui.",
   basse:"Talon-fesse au sol.",
   pos:[[1,"D",108,60],[2,"G",92,72,"e"],[3,"G",92,96],[4,"D",108,96]]},
- {id:10, nom:"3 genoux", fam:"F2", tps:8, pied:"Change de pied directeur",
+ {id:10, vid:[["Knee-up repeater","https://youtu.be/pPFtTCe4sLg"]], nom:"3 genoux", fam:"F2", tps:8, pied:"Change de pied directeur",
   desc:["Monte pied droit au centre","Genou gauche","Pointe gauche touche le sol derrière","Genou gauche","Pointe gauche touche le sol","Genou gauche","Descends pied gauche","Assemble pied droit"],
   reperes:"3 genoux du même côté (repeater), la jambe d’appui ne bouge pas.",
   crit:"Gainage, appui stable, genou à la hanche à chaque fois.",
@@ -105,7 +105,7 @@ const PAS = [
   amp:"Genou au-dessus de la hanche, touche loin derrière.",
   basse:"1 genou seulement.",
   pos:[[1,"D",108,60],[2,"G",92,60,"e"],[4,"G",92,60,"e"],[6,"G",92,60,"e"],[3,"G",92,108,"t"],[5,"G",92,108,"t"],[7,"G",92,91],[8,"D",108,91]]},
- {id:11, nom:"Traverse", fam:"F3", tps:4, pied:"Monte toujours avec le pied le plus proche du step",
+ {id:11, vid:[["Across the top","https://youtu.be/3foJP3sr-J0"]], nom:"Traverse", fam:"F3", tps:4, pied:"Monte toujours avec le pied le plus proche du step",
   desc:["De profil, monte le pied le plus proche au centre","Monte l’autre pied à côté","Descends le premier pied de l’autre côté du step","Assemble"],
   reperes:"Je commence et je finis parallèle au step.",
   crit:"Pieds entiers au milieu, dans l’axe ; regard devant ; je reste près du step à la descente.",
@@ -115,7 +115,7 @@ const PAS = [
   basse:"Pas chassé latéral au sol.",
   profil:true,
   pos:[[1,"G",100,51],[2,"D",100,69],[3,"G",100,14],[4,"D",100,31]]},
- {id:12, nom:"Cheval", fam:"F3", tps:8, pied:"Monte avec le pied le plus proche",
+ {id:12, vid:[["Straddle","https://youtu.be/b4W9ZDmG7xY"]], nom:"Cheval", fam:"F3", tps:8, pied:"Monte avec le pied le plus proche",
   desc:["Monte le pied proche","Monte l’autre pied (tu es sur le step, de profil)","Descends un pied d’un côté du step","Descends l’autre pied de l’autre côté : tu es à cheval","Remonte un pied","Remonte l’autre","Descends de l’autre côté","Assemble"],
   reperes:"Parallèle au step, je commence d’un côté et je finis de l’autre.",
   crit:"Pieds dans l’axe, descente contrôlée, jamais de saut en descendant.",
@@ -134,7 +134,7 @@ const PAS = [
   amp:"Écart maximal aux bords.",
   basse:"V step simple.",
   pos:[[1,"D",138,60],[2,"G",62,60],[3,"D",168,54],[4,"G",168,70]]},
- {id:14, nom:"Reverse", fam:"F4", tps:4, pied:"Garde le même pied directeur",
+ {id:14, vid:[["Reverse turn","https://youtu.be/EbMVGuX74TQ"]], nom:"Reverse", fam:"F4", tps:4, pied:"Garde le même pied directeur",
   desc:["Monte pied droit au centre","Demi-tour sur le step : pivote sur le pied droit et pose le pied gauche à sa droite (tu as le dos à la sono)","Descends pied droit en arrière, côté sono","Assemble pied gauche : tu es de l’autre côté, face au step"],
   reperes:"Demi-tour sur le step, descente en arrière. Repère verbal : « reverse = je tourne en haut, je descends derrière moi ».",
   crit:"Pivot sur l’appui allégé, pied entier, jamais de descente en avant.",
@@ -144,7 +144,7 @@ const PAS = [
   basse:"Basique (sans rotation).",
   pos:[[1,"D",108,60],[2,"G",124,60],[3,"D",94,24],[4,"G",110,24]],
   note:"Après le demi-tour, l’élève regarde vers son côté de départ ; il descend à reculons, côté sono."},
- {id:15, nom:"Back", fam:"F4", tps:4, pied:"Change de pied directeur",
+ {id:15, vid:[["Hop turn (proche du back, à vérifier)","https://youtu.be/owDP53KD1ao"]], nom:"Back", fam:"F4", tps:4, pied:"Change de pied directeur",
   desc:["Monte pied droit au centre","Petit saut sur le pied droit en pivotant d’un demi-tour vers la gauche (vers l’intérieur), réception sur le même pied","Descends pied gauche en arrière, côté sono","Assemble pied droit : tu es de l’autre côté, face au step"],
   reperes:"Saut-pivot sur un pied posé au centre, réception sur le même pied.",
   crit:"Réception pied entier, genou fléchi et dans l’axe, gainage. Pas plus d’un demi-tour.",
@@ -154,7 +154,7 @@ const PAS = [
   basse:"Pivot sans saut, en posant le pied gauche sur le step (comme un reverse).",
   pos:[[1,"D",108,60],[2,"D",108,60],[3,"G",116,24],[4,"D",100,24]],
   note:"Pas le plus technique du répertoire : version basse obligatoire tant que la réception n’est pas stable."},
- {id:16, nom:"Hélicoptère", fam:"F4", tps:4, pied:"Change de pied directeur",
+ {id:16, vid:[["Helicopter","https://youtu.be/KAw1vmM2L1k"]], nom:"Hélicoptère", fam:"F4", tps:4, pied:"Change de pied directeur",
   desc:["Monte pied droit au centre","Jambe gauche tendue en arrière (fly), en pivotant d’un quart de tour vers l’extérieur (la droite) sur le pied droit","Reviens face au step et descends pied gauche","Assemble pied droit"],
   reperes:"Une extension de jambe arrière avec un quart de tour vers l’extérieur. Définition à confirmer.",
   crit:"Bassin gainé et horizontal pendant l’extension, appui stable.",
@@ -250,11 +250,12 @@ const SEANCES = [
  prepare:["AFL1 : le bloc 2 est le 2e support de l’épreuve.","AFL2 : premier lien entre un réglage et un effet (FC, ressenti).","Calcul de la FC max et de la FC de réserve dans le carnet."],
  install:"Même placement qu’en S1. Vérifier 1 m de vide côté sono : le reverse fait descendre de l’autre côté.",
  fiches:[
-  {titre:"Échauffement + rappel du bloc 1", duree:10, cat:"Échauffement", dispo:"Quinconce, enseignant en miroir.",
-   roles:"Tous pratiquent.",
-   deroul:["Au sol : marche 16, genoux 8, talons-fesses 8, step touch 8, step touch avec bras 8 (4 min).","Bloc 1 sans bras ni saut, d’abord en suivant l’enseignant (2 fois), puis seul (2 fois) : l’enseignant se tait (6 min)."],
-   crit:"Progressivité : pas de bras ni de saut pendant l’échauffement.",
-   reussite:"Bloc 1 réalisé seul, sans l’enseignant, 1 fois de chaque côté.",
+  {titre:"Échauffement + rappel du bloc 1 + défi Le canon", duree:10, cat:"Échauffement", dispo:"Quinconce, enseignant en miroir. Pour le canon : chaque rangée de 7 joue ensemble.",
+   defi:"Le canon (coordination)",
+   roles:"Tous pratiquent. Pendant le canon, le binôme de la rangée voisine regarde la vague et dit où elle casse.",
+   deroul:["Au sol : marche 16, genoux 8, talons-fesses 8, step touch 8, step touch avec bras 8 (4 min).","Bloc 1 sans bras ni saut, d’abord en suivant l’enseignant (1 fois de chaque côté), puis seul (1 fois de chaque côté) : l’enseignant se tait (3 min).","Défi Le canon (3 min), par rangée, bloc 1 départ pied droit, en boucle : l’élève côté tribune démarre ; son voisin démarre 8 temps plus tard (quand le premier a fini genou G + genou D), et ainsi de suite jusqu’au 7e. La rangée doit former une vague qui ne casse pas."],
+   crit:"Progressivité : pas de bras ni de saut pendant l’échauffement. Canon : je pars sur le temps 1 de mon 8, ni avant ni après.",
+   reussite:"Bloc 1 réalisé seul, sans l’enseignant, 1 fois de chaque côté. Canon réussi : chacun démarre avec 8 temps d’écart et la vague tient 2 tours du bloc (coché dans le carnet).",
    moins:"Suivre l’enseignant tout le temps.", plus:"Ajouter les bras sur le dernier passage.", schema:"bloc:1"},
   {titre:"Les pas du bloc 2", duree:10, cat:"Apprentissage des pas", dispo:"Quinconce, face au step.",
    roles:"Tous pratiquent. Le binôme compte « 1, 2 et 3, 4 » sur le pendule.",
@@ -289,16 +290,18 @@ const SEANCES = [
  bpm:"130", pas:"Bloc 3 : tap up, back (sans saut), V step, hélicoptère, 3 genoux, jumping jack",
  tl:[["Installation",4,"inst"],["Échauffement",10,"ech",0],["Exercice 1",18,"ex",1],["Exercice 2",6,"ex",2],["Situation finale",24,"sf",3],["Bilan, rangement",8,"bil",4]],
  prepare:["AFL1 : le bloc 3 complète les 3 supports de l’épreuve.","AFL1 : premier effort au format de la filière B (continuité, FC à mi-série).","AFL2 : prévoir sa FC (Juste Pouls) = connaissance de soi."],
- install:"Même placement. Le back se fait sans saut pendant toute la séance.",
+ install:"Pour l’échauffement : 5 rondes de 7 steps (cercle d’environ 4,5 m de diamètre, 1 m entre deux steps). Chaque élève se place au bout droit de son step, face au centre. Retour en quinconce pendant l’échauffement. Le back se fait sans saut pendant toute la séance.",
  fiches:[
-  {titre:"Échauffement + rappel des blocs 1 et 2", duree:10, cat:"Échauffement", dispo:"Quinconce.",
-   roles:"Tous pratiquent.",
-   deroul:["Au sol (3 min).","Bloc 1 puis bloc 2 sans bras ni saut, seuls : l’enseignant n’annonce que le changement de bloc (7 min)."],
-   crit:"Pas de propulsion pendant l’échauffement.", reussite:"Blocs 1 et 2 enchaînés seuls.",
-   moins:"L’enseignant mène le bloc 2.", plus:"Bras sur le bloc 1.", schema:""},
+  {titre:"Échauffement : défis La ronde et L’annonce", duree:10, cat:"Échauffement", dispo:"5 rondes de 7 steps, puis quinconce.",
+   defi:"La ronde + L’annonce (coordination)",
+   roles:"Ronde : les 7 élèves de la ronde ensemble. Annonce : en binôme, l’un fait les blocs et annonce, l’autre vérifie, puis on échange.",
+   deroul:["Au sol (2 min).","Défi La ronde, niveau 1 (3 min) : au signal, chacun fait des traverses pour passer de son step au step suivant, sans jamais s’arrêter. Toutes les rondes tournent dans le même sens.","Retour en quinconce (1 min) : chacun ramène un step à une place de la quinconce.","Défi L’annonce (4 min) : blocs 1 puis 2, seuls, sans bras ni saut. Pendant que je fais un pas, j’annonce à voix haute le pas suivant. L’enseignant n’annonce que le changement de bloc."],
+   crit:"Ronde : un seul élève par step, tous sur le même temps. Annonce : je dis le pas suivant avant de le faire, jamais après. Pas de propulsion pendant l’échauffement.",
+   reussite:"Ronde : 3 tours sans arrêt, un seul élève par step. Annonce : blocs 1 et 2 annoncés sans erreur. Les deux défis sont cochés dans le carnet.",
+   moins:"Ronde en marchant au sol autour des steps ; annonce du bloc 1 seulement.", plus:"Ronde niveau 2 : sur chaque step, j’enchaîne le bloc 1 avant la traverse suivante.", schema:"ronde"},
   {titre:"Apprendre le bloc 3", duree:18, cat:"Blocs", dispo:"Quinconce. Musique 128 BPM.",
    roles:"Tous pratiquent. Toutes les 5 min, binômes : l’un fait, l’autre vérifie la réception du back et les sauts du jumping jack (toujours sur la plateforme).",
-   deroul:["Back <b>sans saut</b> (pivot en posant le pied gauche) ; hélicoptère au ralenti (jambe tendue derrière, quart de tour).","Tap up + back (8 temps) ; V step + hélicoptère (8 temps).","3 genoux (8 temps) ; jumping jack sur le step (8 temps) : on descend en marchant.","Bloc entier en méthode additive, puis 2 fois de chaque côté."],
+   deroul:["Back SANS SAUT (pivot en posant le pied gauche) ; hélicoptère au ralenti (jambe tendue derrière, quart de tour).","Tap up + back (8 temps) ; V step + hélicoptère (8 temps).","3 genoux (8 temps) ; jumping jack sur le step (8 temps) : on descend en marchant.","Bloc entier en méthode additive, puis 2 fois de chaque côté."],
    crit:"Back sans saut aujourd’hui ; sauts du jumping jack uniquement sur la plateforme ; jamais de saut en descendant.",
    reussite:"Bloc 3 enchaîné 2 fois de chaque côté avec au plus 2 erreurs.",
    moins:"Jumping jack sans saut (pas écarté, pas serré).", plus:"Bras au-dessus de la tête sur le jumping jack.",
@@ -331,10 +334,10 @@ const SEANCES = [
  prepare:["AFL1 : les 3 blocs supports de l’épreuve sont enchaînés.","AFL2 : choix argumenté de la filière (données S2, S3, S4).","AFL3 : constitution des binômes pratiquant / coach."],
  install:"Même placement.",
  fiches:[
-  {titre:"Échauffement mené par un élève de chaque rangée + défi Mémoire", duree:10, cat:"Échauffement", dispo:"Quinconce. 5 élèves volontaires face à leur rangée.",
-   defi:"Badge Mémoire",
+  {titre:"Échauffement mené par un élève de chaque rangée + défi Mémoire", duree:10, cat:"Échauffement", dispo:"Quinconce. 5 élèves volontaires devant leur rangée, de dos (pas de miroir à faire).",
+   defi:"Badge Mémoire + badge Chef d’orchestre",
    roles:"5 meneurs (un par rangée), les autres suivent ; l’enseignant circule.",
-   deroul:["Au sol mené par les élèves (3 min).","Blocs 1, 2, 3 enchaînés sans bras ni saut, sans l’enseignant (7 min). Le coach coche : 3 blocs enchaînés sans arrêt = badge Mémoire."],
+   deroul:["Au sol mené par les élèves (3 min).","Blocs 1, 2, 3 enchaînés sans bras ni saut, sans l’enseignant (7 min). Le coach coche : 3 blocs enchaînés sans arrêt = badge Mémoire.","Badge Chef d’orchestre : le meneur qui enchaîne 4 fois les 3 blocs devant sa rangée, sans aide et sans erreur, le gagne. On le rejoue en S5, S6 et S7 avec de nouveaux meneurs."],
    crit:"Le meneur annonce le pas suivant pendant les 4 derniers temps.", reussite:"Aucune rangée ne s’arrête.",
    moins:"L’enseignant mène, les meneurs doublent.", plus:"Le meneur ajoute les bras.", schema:""},
   {titre:"Les curseurs : version basse / version haute", duree:12, cat:"Entraînement", dispo:"Quinconce. Oxymètres. Fiche curseurs.",
@@ -514,11 +517,19 @@ const SEANCES = [
  ]}
 ];
 
-/* ---------- Défis (à partir de S3) ---------- */
+/* ---------- Vidéos de l’ancienne appli sans pas correspondant dans les 3 blocs ---------- */
+const VIDEOS_AUTRES = [["A-step","PZw1xbZnSRo"],["T-step v1","kDp-lUKZ03k"],["T-step v2","-mt79WbfG4A"],["Around the world","UG6WUQ7eQPA"],["W-step","b8_bp_YdkgM"],["L-step","jRp0pkB_Two"],["Kick","3VKKLMj6Zdo"],["Lift","wHIVZN70_s0"],["Arabesque","BmpXH__ODzM"],["Over the top","ylcs5GPfq-c"],["Knee-up scissors","cCsB8wrx2K0"],["Charleston","BJ3ev3u0Qts"],["I-step","88mdkeK-0ks"]];
+
+/* ---------- Défis : coordination (S2-S3, réussi / pas encore) puis FC (à partir de S3, points) ---------- */
+const DEFIS_COORD = [
+ {nom:"Le canon", seances:"S2 · échauffement", regle:"Par rangée de 7, bloc 1 en boucle : chacun démarre avec 8 temps d’écart sur son voisin.", points:"Réussi si chacun démarre à 8 temps d’écart et que la vague tient 2 tours du bloc. Coché dans le carnet, pas de points.", pourquoi:"Compter en 8 temps sans l’enseignant, le vrai obstacle des débutants (AFL1).", source:"Ancienne appli STEP’A Pompidou, défi synchro"},
+ {nom:"La ronde", seances:"S3 · échauffement", regle:"5 rondes de 7 steps. Au signal, traverse d’un step au suivant, sans arrêt. Niveau 2 : le bloc 1 sur chaque step entre deux traverses.", points:"Réussi si un seul élève par step, tous sur le même temps, 3 tours sans arrêt. Coché dans le carnet.", pourquoi:"Se synchroniser avec la musique et avec le groupe.", source:"Ancienne appli STEP’A Pompidou, défi synchro"},
+ {nom:"L’annonce", seances:"S3 · échauffement", regle:"Pendant que je fais un pas, j’annonce à voix haute le pas suivant. Le partenaire vérifie.", points:"Réussi si les blocs 1 et 2 sont annoncés sans erreur. Coché dans le carnet.", pourquoi:"Preuve de mémorisation : on n’annonce que ce qu’on sait par cœur.", source:"Ancienne appli STEP’A Pompidou, défi mémo"}
+];
 const DEFIS = [
  {nom:"Juste Pouls", seances:"S3 à S7", regle:"Avant chaque mesure, le pratiquant annonce la FC qu’il va atteindre ; le coach l’écrit avant l’effort.", points:"± 5 = 3 pts · ± 10 = 1 pt · au-delà = 0", pourquoi:"Se connaître : relier un réglage et une sensation à un chiffre (AFL2).", source:"Défi des 4 allures du carnet de demi-fond"},
  {nom:"Pile dans la cible", seances:"S5 à S7", regle:"Chaque mesure de la séance de filière est une flèche dans une cible : la zone.", points:"Centre de la zone (± 3) = 3 pts · dans la zone = 2 pts · à 5 pulsations près = 1 pt", pourquoi:"Récompenser la précision, jamais l’intensité.", source:"Défi par équipes, académie de Bordeaux (Liza Martin)"},
- {nom:"Badges", seances:"S3 à S8", regle:"Mémoire (3 blocs enchaînés seul, S4) · Endurant (12 min sans arrêt, S3) · Devin (3 annonces Juste Pouls à ± 5) · Régleur (2 séances de filière à 3 mesures sur 4 dans la zone) · Coach (pronostic à ± 5 % deux fois).", points:"Calculés et affichés dans le carnet numérique", pourquoi:"Rendre visibles les progrès de l’AFL2 et de l’AFL3.", source:"Escape game step, académie de Versailles"}
+ {nom:"Badges", seances:"S3 à S8", regle:"Mémoire (3 blocs enchaînés seul, S4) · Endurant (12 min sans arrêt, S3) · Devin (3 annonces Juste Pouls à ± 5) · Régleur (2 séances de filière à 3 mesures sur 4 dans la zone) · Coach (pronostic à ± 5 % deux fois) · Chef d’orchestre (devant sa rangée, de dos, 4 fois les 3 blocs sans aide et sans erreur, S4 à S7).", points:"Calculés et affichés dans le carnet numérique", pourquoi:"Rendre visibles les progrès de l’AFL2 et de l’AFL3.", source:"Escape game step, académie de Versailles"}
 ];
 
 /* ---------- Banque de formes de travail ---------- */
@@ -605,6 +616,20 @@ function svgSalle(){
   s += `<path d="M300 46 l0 140" class="sv-dim"/><text x="306" y="120" class="sv-l" transform="rotate(90 306 120)">≈ 11 m</text>`;
   return s + `</svg>`;
 }
+function svgRonde(){
+  let s = `<svg viewBox="0 0 320 185" class="svgw" role="img" aria-label="5 rondes de 7 steps">`;
+  s += `<rect x="4" y="4" width="312" height="177" rx="6" class="sv-zone"/>`;
+  s += `<rect x="105" y="8" width="110" height="20" rx="3" class="sv-prof"/><text x="160" y="23" text-anchor="middle" class="sv-lw">Prof + sono</text>`;
+  [[62,66],[160,66],[258,66],[111,140],[209,140]].forEach(([cx,cy]) => {
+    for(let i=0;i<7;i++){
+      const a = -Math.PI/2 + i*2*Math.PI/7, x = cx + 34*Math.cos(a), y = cy + 34*Math.sin(a), deg = a*180/Math.PI + 90;
+      s += `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${deg.toFixed(1)})"><rect x="-11" y="-4" width="22" height="8" rx="2" class="sv-step"/><circle cx="14" cy="0" r="3" fill="var(--accent)"/></g>`;
+    }
+    s += `<path d="M${cx-9} ${cy} a9 9 0 1 1 9 9" fill="none" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#fr)"/>`;
+  });
+  s += `<defs><marker id="fr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>`;
+  return s + `</svg><p class="small" style="text-align:center;margin:4px 0 0">5 rondes de 7 · chaque élève au bout droit de son step · traverse vers le step suivant, même sens pour toutes les rondes</p>`;
+}
 function svgBinome(){
   let s = `<svg viewBox="0 0 320 150" class="svgw" role="img" aria-label="Organisation pratiquant et coach">`;
   s += `<rect x="130" y="6" width="60" height="14" rx="3" class="sv-prof"/><text x="160" y="16" text-anchor="middle" class="sv-lw">Chrono + sono</text>`;
@@ -675,6 +700,7 @@ function schema(spec){
   const [t, a] = spec.split(":");
   if(t === "salle") return svgSalle();
   if(t === "binome") return svgBinome();
+  if(t === "ronde") return svgRonde();
   if(t === "curseurs") return svgCurseurs();
   if(t === "series") return svgSeries(a.split(",").map(Number), a === "12" || a === "6,3" ? 1 : 2);
   if(t === "filieres") return svgFiliere(a);

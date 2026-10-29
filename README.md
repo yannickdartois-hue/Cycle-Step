@@ -4,6 +4,8 @@ Outil de cycle (enseignant) et carnet numérique (élèves) pour un cycle de ste
 
 **Carnet élève :** https://yannickdartois-hue.github.io/Carnet-Step-/ (bouton « Carnet élève » sur toutes les pages).
 
+**Démo du carnet :** https://yannickdartois-hue.github.io/Carnet-Step-/?demo (classe fictive pour présenter l'appli ; bouton « Démo du carnet » en haut de l'écran de cours).
+
 ## Contenu du dépôt
 | Fichier | Rôle |
 |---|---|
@@ -31,3 +33,9 @@ Remplacer les fichiers, puis changer le numéro de version dans `sw.js` (`cycle-
 - `cycle-step-old.html` : l'outil précédent, gardé par sécurité. Les 16 pas, blocs et curseurs, filières et FC, chrono, échauffements, carnet, défis, évaluation, banque et PDF y restent (bouton « Préparer »). C'est là qu'on marque la séance du jour.
 - `step-donnees.js` : pas, blocs, filières, séances et schémas, partagés par les deux pages.
 - `polices/` : polices embarquées pour le hors ligne (licence SIL OFL).
+
+## Mise à jour du 29/10/2026
+- Défis de coordination repris de l'ancienne appli STEP'A Pompidou : **Le canon** (S2, échauffement), **La ronde** et **L'annonce** (S3, échauffement, avec le schéma des 5 rondes), badge **Chef d'orchestre** (S4 à S7, meneurs de dos à leur rangée). Durées des séances inchangées (70 min).
+- Liens vidéo de l'ancienne appli dans le répertoire des 16 pas de l'outil complet (écran seulement, pas dans les PDF).
+- Bouton « Démo du carnet » ajouté par l'atelier (`mon-eps/atelier/ecran-de-cours/apps/activites.json`).
+- PDF mis à jour : S2, S3, S4, défis, cycle complet.
