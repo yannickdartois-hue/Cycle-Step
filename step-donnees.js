@@ -280,7 +280,7 @@ const SEANCES = [
    schema:"series:3,3,3"},
   {titre:"Bilan : calculer sa zone", duree:8, cat:"Bilan", dispo:"Assis, carnet. Rangement 3 min.",
    roles:"Les binômes vérifient mutuellement leurs calculs.",
-   deroul:["FC max = 220 − âge (garçons) ou 226 − âge (filles).","FC de réserve = FC max − FC de repos (valeur prise à la maison).","Zones A (80-95 %) et B (55-70 %) : calcul puis « Vérifier mes calculs » dans le carnet."],
+   deroul:["FC max = 220 − âge (garçons) ou 226 − âge (filles). Cette formule se trompe d’environ 10 pulsations : si une FC déjà mesurée (série 3 du test des leviers) est plus haute, c’est elle qu’on garde (le carnet le fait tout seul).","FC de réserve = FC max − FC de repos (valeur prise à la maison).","Zones A (80-95 %) et B (55-70 %) : calcul puis « Vérifier mes calculs » dans le carnet."],
    crit:"Calcul posé, unités notées.", reussite:"Calcul juste pour 9 élèves sur 10.",
    moins:"Utiliser la table imprimée des FC cibles.", plus:"Expliquer pourquoi la zone A est plus haute.", schema:""}
  ]},
@@ -306,12 +306,12 @@ const SEANCES = [
    reussite:"Bloc 3 enchaîné 2 fois de chaque côté avec au plus 2 erreurs.",
    moins:"Jumping jack sans saut (pas écarté, pas serré).", plus:"Bras au-dessus de la tête sur le jumping jack.",
    schema:"bloc:3"},
-  {titre:"Défi Juste Pouls : je présente le jeu", duree:6, cat:"Défi", dispo:"Assis près du step, puis 1 min d’essai.",
+  {titre:"Défi Juste Pouls : essai bref et intense (3 × 1 min)", duree:6, cat:"Défi", dispo:"Quinconce. Musique 130 BPM. 1 oxymètre par binôme.",
    defi:"Juste Pouls",
-   roles:"Binômes. Le pratiquant annonce, le coach note l’annonce avant l’effort.",
-   deroul:["Avant chaque mesure, j’annonce la FC que je vais atteindre. Le coach l’écrit.","Points : annonce à ± 5 = 3 pts · à ± 10 = 1 pt · au-delà = 0.","Essai : 1 min de bloc 1, annonce, mesure, points.","Les points du binôme s’additionnent dans le carnet, de S3 à S7."],
-   crit:"On annonce avant de bouger, jamais après avoir vu l’oxymètre.", reussite:"Chaque binôme a fait une annonce et calculé ses points.",
-   moins:"Annoncer une fourchette de 20 au lieu d’un chiffre.", plus:"Annoncer aussi le ressenti (0-10).", schema:""},
+   roles:"Binômes. Le pratiquant annonce, le coach écrit l’annonce avant l’effort, puis mesure.",
+   deroul:["Règle (1 min) : avant chaque mesure, j’annonce la FC que je vais atteindre ; le coach l’écrit. Annonce à ± 5 = 3 pts · à ± 10 = 1 pt · au-delà = 0. Les points du binôme s’additionnent dans le carnet, de S3 à S7.","Annonce de la FC de fin, puis 3 × 1 min de bloc 1 en version haute (bras au-dessus des épaules, propulsion, sans réhausse), 30 s de marche entre les minutes.","Mesure dès l’arrêt (oxymètre dans les 5 s), points Juste Pouls, comparaison avec la zone A : c’est la première expérience de la filière A, avant l’effort long (filière B) de la situation finale."],
+   crit:"On annonce avant de bouger, jamais après avoir vu l’oxymètre. Sauts uniquement sur la plateforme.", reussite:"Chaque élève a annoncé, mesuré et situé sa FC par rapport à sa zone A.",
+   moins:"Annoncer une fourchette de 20 au lieu d’un chiffre ; propulsion sans saut.", plus:"Annoncer aussi le ressenti (0-10).", schema:"series:1,1,1"},
   {titre:"Effort long : 12 min continues + Juste Pouls", duree:24, cat:"Situation finale", dispo:"Quinconce. Musique 130 BPM. Chrono mural.",
    defi:"Juste Pouls",
    roles:"Tous pratiquent. Le coach écrit l’annonce de son partenaire, compte ses arrêts et note les FC.",
@@ -547,7 +547,7 @@ const BANQUE = [
 /* ---------- Évaluation (seconde, /20) ---------- */
 const EVAL = {
  afl1:[
-  {el:"Produire · Zone de FC", pts:3, rep:["0 ou 1 mesure sur 4 dans la zone : 0","2 sur 4 : 1","3 sur 4 : 2","4 sur 4 : 3"]},
+  {el:"Produire · Zone de FC (filière A : une mesure jusqu’à 5 pulsations sous la zone compte, la FC chute dès l’arrêt)", pts:3, rep:["0 ou 1 mesure sur 4 dans la zone : 0","2 sur 4 : 1","3 sur 4 : 2","4 sur 4 : 3"]},
   {el:"Produire · Continuité", pts:2, rep:["Plus de 3 arrêts hors mesures : 0","2 ou 3 arrêts : 1","1 arrêt : 1,5","Aucun arrêt : 2"]},
   {el:"Produire · Sécurité et qualité d’exécution", pts:2, rep:["Mise en danger (descente avant, saut en descente) : 0","Pied souvent mal posé, bruit : 0,5","Quelques fautes en fin de série : 1,5","Pied entier, silence, gainage tout au long : 2"]},
   {el:"Produire · Respect du plan annoncé", pts:1, rep:["Plan absent ou non suivi : 0","Plan suivi en partie : 0,5","Plan suivi ou modifié de façon justifiée : 1"]},
@@ -702,7 +702,7 @@ function schema(spec){
   if(t === "binome") return svgBinome();
   if(t === "ronde") return svgRonde();
   if(t === "curseurs") return svgCurseurs();
-  if(t === "series") return svgSeries(a.split(",").map(Number), a === "12" || a === "6,3" ? 1 : 2);
+  if(t === "series") return svgSeries(a.split(",").map(Number), a === "12" || a === "6,3" ? 1 : a === "1,1,1" ? 0.5 : 2);
   if(t === "filieres") return svgFiliere(a);
   if(t === "pas") return `<div class="minipas">` + a.split(",").map(n => { const p = pasById(+n); return `<figure>${svgPas(p,140)}<figcaption>${p.id}. ${esc(p.nom)}</figcaption></figure>`; }).join("") + `</div>`;
   if(t === "bloc") return a.split(",").map(n => htmlBloc(+n)).join("");
