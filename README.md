@@ -4,7 +4,9 @@ Outil de cycle (enseignant) et carnet numérique (élèves) pour un cycle de ste
 
 **Carnet élève :** https://yannickdartois-hue.github.io/Carnet-Step-/ (bouton « Carnet élève » sur toutes les pages).
 
-**Démo du carnet :** https://yannickdartois-hue.github.io/Carnet-Step-/?demo (classe fictive pour présenter l'appli ; bouton « Démo du carnet » en haut de l'écran de cours).
+**Outil prof du carnet :** https://yannickdartois-hue.github.io/Carnet-Step-/prof/ (bouton « Carnet prof » en haut de l'écran de cours) : recevoir les séances des binômes, suivre la classe, préparer la note.
+
+**Démos :** https://yannickdartois-hue.github.io/Carnet-Step-/?demo (élève) et …/Carnet-Step-/prof/?demo (prof).
 
 ## Contenu du dépôt
 | Fichier | Rôle |
