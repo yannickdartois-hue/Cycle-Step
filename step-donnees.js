@@ -517,6 +517,11 @@ const SEANCES = [
  ]}
 ];
 
+/* ---------- Vidéos de l’équipe (PeerTube apps.education) ----------
+   Coller ici l’adresse de chaque vidéo filmée par l’équipe : elle s’affiche en premier, avant celles de l’ancienne appli.
+   Pas : numéro du pas (1 à 16). Blocs : "b1", "b2", "b3". Exemple : 14:"https://tube-...apps.education.fr/w/xxxx" */
+const VIDEOS_EQUIPE = {};
+
 /* ---------- Vidéos de l’ancienne appli sans pas correspondant dans les 3 blocs ---------- */
 const VIDEOS_AUTRES = [["A-step","PZw1xbZnSRo"],["T-step v1","kDp-lUKZ03k"],["T-step v2","-mt79WbfG4A"],["Around the world","UG6WUQ7eQPA"],["W-step","b8_bp_YdkgM"],["L-step","jRp0pkB_Two"],["Kick","3VKKLMj6Zdo"],["Lift","wHIVZN70_s0"],["Arabesque","BmpXH__ODzM"],["Over the top","ylcs5GPfq-c"],["Knee-up scissors","cCsB8wrx2K0"],["Charleston","BJ3ev3u0Qts"],["I-step","88mdkeK-0ks"]];
 

@@ -343,7 +343,7 @@ VIEWS.pas = () => {
       h += `<article class="pas"><div class="pas-h"><b>${p.id}. ${esc(p.nom)}</b><span class="pill">${p.tps} temps</span></div>
       <div class="pas-b"><div class="pas-svg">${svgPas(p)}</div><div><ol class="tps">${p.desc.map(d => `<li>${esc(d)}</li>`).join("")}</ol>${p.note ? `<p class="small">${esc(p.note)}</p>` : ""}<p class="small"><b>${esc(p.pied)}.</b> ${esc(p.reperes)}</p></div></div>
       <p class="small"><b>Critères.</b> ${esc(p.crit)}</p>
-      <table class="cx"><tr><th>Bras</th><td>${esc(p.bras)}</td></tr><tr><th>Saut</th><td>${esc(p.saut)}</td></tr><tr><th>Amplitude</th><td>${esc(p.amp)}</td></tr><tr><th>Version basse</th><td>${esc(p.basse)}</td></tr></table>${p.vid ? `<p class="small vid noprint">▶ Vidéo (en ligne) : ${p.vid.map(v => `<a href="${v[1]}" target="_blank" rel="noopener">${esc(v[0])}</a>`).join(" · ")}</p>` : ""}</article>`;
+      <table class="cx"><tr><th>Bras</th><td>${esc(p.bras)}</td></tr><tr><th>Saut</th><td>${esc(p.saut)}</td></tr><tr><th>Amplitude</th><td>${esc(p.amp)}</td></tr><tr><th>Version basse</th><td>${esc(p.basse)}</td></tr></table>${(typeof VIDEOS_EQUIPE!=="undefined"&&VIDEOS_EQUIPE[p.id]) ? `<p class="small vid noprint">▶ <a href="${VIDEOS_EQUIPE[p.id]}" target="_blank" rel="noopener"><b>Vidéo de l’équipe</b></a> (en ligne)</p>` : ""}${p.vid ? `<p class="small vid noprint">▶ Ancienne appli (en ligne) : ${p.vid.map(v => `<a href="${v[1]}" target="_blank" rel="noopener">${esc(v[0])}</a>`).join(" · ")}</p>` : ""}</article>`;
     });
     h += `</div>`;
   });
@@ -353,7 +353,7 @@ VIEWS.pas = () => {
 };
 VIEWS.blocs = () => `<h2>Blocs imposés et curseurs</h2>
   <p>La chorégraphie de l’équipe : 3 blocs de 32 temps. Chaque bloc se fait départ pied droit puis en miroir, départ pied gauche.</p>
-  ${BLOCS.map(b => htmlBloc(b.id) + `<p class="small">Appris en ${b.seance}.</p>`).join("")}
+  ${BLOCS.map(b => htmlBloc(b.id) + `<p class="small">Appris en ${b.seance}.${(typeof VIDEOS_EQUIPE!=="undefined"&&VIDEOS_EQUIPE["b"+b.id]) ? ` <span class="noprint">▶ <a href="${VIDEOS_EQUIPE["b"+b.id]}" target="_blank" rel="noopener"><b>Vidéo du bloc</b></a> (en ligne)</span>` : ""}</p>`).join("")}
   <h3>Les curseurs d’intensité</h3>
   <p>Chaque curseur va de 0 à 2. Le total (0 à 8) est le <b>réglage</b> noté dans le carnet, par exemple « H1 B2 P2 A1 = 6 ». Le tempo est le même pour toute la classe (une seule sono) : on règle l’intensité avec les curseurs, pas avec la musique.</p>
   <table class="tab"><tr><th>Curseur</th><th>0</th><th>1</th><th>2</th></tr>${CURSEURS.map(c => `<tr><th>${c.k} · ${c.nom}</th>${c.n.map(x => `<td>${esc(x)}</td>`).join("")}</tr>`).join("")}</table>

@@ -47,3 +47,11 @@ Bouton **♪ … BPM** de l'écran de cours :
 - Compteur visible de loin : temps (1 à 8), 8 temps (1 à 4), numéro du bloc de 32 ; option « bloc suivant » annoncé à la voix 4 temps avant.
 - « Réduire » garde la musique et le compteur en bas de l'écran pendant qu'on suit la séance.
 Au-delà de ± 12 % d'écart entre le tempo d'origine et celui de la classe, le son se dégrade : choisir un morceau plus proche.
+
+## Vidéos de l'équipe (à tourner)
+Les vidéos YouTube de l'ancienne appli ne montrent pas toujours vos pas (le back de l'équipe est un saut pivot, pas un « hop turn ») et ne marchent pas hors ligne. Plan de tournage (environ 30 min) :
+1. Un élève ou un collègue sur un step, tenue contrastée, fond uni, téléphone à l'horizontale sur pied, à 3 m, à hauteur de hanche.
+2. **16 pas** : chacun 2 fois de face puis 2 fois de profil, au ralenti (compter à voix haute), puis 4 fois en musique à 125 BPM. Départ pied droit.
+3. **3 blocs** : de face, puis de dos (pour que les élèves suivent sans miroir), à 125 BPM, puis en miroir départ pied gauche.
+4. Points à montrer de près : pied entier posé au centre, descente arrière à 20 cm, réception du back sur le même pied, sauts du jumping jack sur la plateforme.
+5. Déposer sur la chaîne PeerTube apps.education, puis coller les adresses dans `VIDEOS_EQUIPE` en haut de `step-donnees.js` (pas 1 à 16, blocs `b1`, `b2`, `b3`). Elles s'affichent en premier dans le répertoire des 16 pas et sous chaque bloc.
