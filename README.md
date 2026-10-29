@@ -39,3 +39,11 @@ Remplacer les fichiers, puis changer le numéro de version dans `sw.js` (`cycle-
 - Liens vidéo de l'ancienne appli dans le répertoire des 16 pas de l'outil complet (écran seulement, pas dans les PDF).
 - Bouton « Démo du carnet » ajouté par l'atelier (`mon-eps/atelier/ecran-de-cours/apps/activites.json`).
 - PDF mis à jour : S2, S3, S4, défis, cycle complet.
+
+## Musique (29/10/2026)
+Bouton **♪ … BPM** de l'écran de cours :
+- **Métronome** : départ « 5, 6, 7, 8 » à la voix, clic accentué sur chaque « 1 » et plus fort à chaque début de bloc de 32 temps.
+- **Mes morceaux** : ajouter des MP3 depuis l'iPad (gardés sur l'appareil, utilisables hors ligne) ; indiquer leur tempo d'origine (ou le taper) ; l'appli les joue au tempo de la classe **sans changer la hauteur du son**. Bouton « 1 · caler le compteur » pile sur un début de phrase.
+- Compteur visible de loin : temps (1 à 8), 8 temps (1 à 4), numéro du bloc de 32 ; option « bloc suivant » annoncé à la voix 4 temps avant.
+- « Réduire » garde la musique et le compteur en bas de l'écran pendant qu'on suit la séance.
+Au-delà de ± 12 % d'écart entre le tempo d'origine et celui de la classe, le son se dégrade : choisir un morceau plus proche.
