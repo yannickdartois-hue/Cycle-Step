@@ -1,9 +1,5 @@
 /* Cycle step : l'outil et ses PDF sont mis en cache à la 1re ouverture (Wi-Fi), puis fonctionnent sans réseau. */
-<<<<<<< HEAD
-const C='cycle-step-v17';
-=======
-const C='cycle-step-v16';
->>>>>>> fce3eb7 (Mode d'emploi : barre d'onglets vide masquée quand il n'y a qu'un public)
+const C='cycle-step-v18';
 // Toutes les applis partagent le même stockage (même adresse github.io) : on n'efface QUE les anciennes versions de CETTE appli.
 const MES_CACHES=/^(?:cycle\-step\-v)\d+$/;
 
