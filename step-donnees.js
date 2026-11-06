@@ -175,13 +175,13 @@ const CURSEURS = [
 
 /* ---------- Blocs imposés (32 temps) ---------- */
 const BLOCS = [
- {id:1, nom:"Bloc 1", seance:"S2", depart:"Face au step, pied droit",
+ {id:1, nom:"Bloc 1", seance:"S1", depart:"Face au step, pied droit",
   fin:"Côté gauche : refaire le bloc en miroir, départ pied gauche.",
   pas:[{t:4, nom:"Genou G", id:8},{t:4, nom:"Genou D", id:8},{t:4, nom:"V step", id:2},{t:4, nom:"V ¼ de tour à droite", id:13},{t:4, nom:"Traverse", id:11},{t:8, nom:"Cheval", id:12},{t:4, nom:"Tap up", id:7}]},
- {id:2, nom:"Bloc 2", seance:"S3", depart:"Face au step, pied droit",
+ {id:2, nom:"Bloc 2", seance:"S2", depart:"Face au step, pied droit",
   fin:"Côté gauche : refaire le bloc en miroir, départ pied gauche.",
   pas:[{t:4, nom:"Pendule", id:3},{t:4, nom:"Reverse", id:14},{t:4, nom:"Talons G", id:9},{t:4, nom:"Talons D", id:9},{t:8, nom:"Lunge", id:5},{t:4, nom:"Jazz square", id:4},{t:4, nom:"Basique", id:1}]},
- {id:3, nom:"Bloc 3", seance:"S4", depart:"Face au step, pied droit",
+ {id:3, nom:"Bloc 3", seance:"S3", depart:"Face au step, pied droit",
   fin:"Côté gauche : refaire le bloc en miroir, départ pied gauche.",
   pas:[{t:4, nom:"Tap up", id:7},{t:4, nom:"Back (tourne à G, intérieur)", id:15},{t:4, nom:"V step", id:2},{t:4, nom:"Hélicoptère (tourne extérieur)", id:16},{t:8, nom:"3 genoux", id:10},{t:8, nom:"Jumping jack sur le step", id:6}]}
 ];
@@ -285,7 +285,7 @@ const SEANCES = [
    moins:"Utiliser la table imprimée des FC cibles.", plus:"Expliquer pourquoi la zone A est plus haute.", schema:""}
  ]},
 /* ============ S3 ============ */
-{id:"S3", titre:"Bloc 3, rappel des blocs 1 et 2, premiers défis",
+{id:"S3", titre:"Bloc 3, bref contre long, Juste Pouls",
  obj:"Apprendre le bloc 3, tenir un effort long sans rupture et commencer à prévoir sa propre fréquence cardiaque.",
  bpm:"130", pas:"Bloc 3 : tap up, back (sans saut), V step, hélicoptère, 3 genoux, jumping jack",
  tl:[["Installation",4,"inst"],["Échauffement",10,"ech",0],["Exercice 1",18,"ex",1],["Exercice 2",6,"ex",2],["Situation finale",24,"sf",3],["Bilan, rangement",8,"bil",4]],
@@ -447,7 +447,7 @@ const SEANCES = [
    moins:"Phrase à compléter.", plus:"Expliquer l’écart entre le ressenti et la FC.", schema:""}
  ]},
 /* ============ S7 ============ */
-{id:"S7", titre:"Répétition générale au format de l’évaluation",
+{id:"S7", titre:"Répétition générale au format de l’évaluation (25 min)",
  obj:"Réaliser sa séance complète de 25 minutes, puis analyser l’écart entre ce qui était prévu et ce qui a été fait.",
  bpm:"132", pas:"Version personnelle",
  tl:[["Installation",3,"inst"],["Échauffement autonome",8,"ech",0],["Exercice 1",10,"ex",1],["Exercice 2",6,"ex",2],["Situation finale",27,"sf",3],["Analyse, bilan",16,"bil",4]],
