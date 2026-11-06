@@ -546,6 +546,7 @@ const BANQUE = [
  {nom:"Alternance de versions", fil:"B", niv:"N2", format:"12 min : 1 bloc version basse / 1 bloc version moyenne", effet:"Rester dans la zone B sans s’arrêter", remplace:"Continu"},
  {nom:"Défi continuité", fil:"B", niv:"N2", format:"Tenir 6, 8 puis 10 min sans erreur ni arrêt", effet:"Mémorisation et durée", remplace:"Enchaîner les blocs (S3)"},
  {nom:"Échelle de curseurs", fil:"A/B", niv:"N2", format:"5 × 2 min, +1 curseur à chaque série, mesure à chaque arrêt", effet:"Construire sa courbe réglage → FC", remplace:"Les curseurs (S4)"},
+ {nom:"Bloc cross-step", fil:"A", niv:"N3", format:"32 temps en boucle, 4 × 1 min, step sans réhausse et bien calé : 1-8 jumping squat (monter en sautant, 3 squats, descendre D puis G) · 9-16 lift D + squat côté gauche du step, 2 sauts pieds joints · 17-24 mountain climbers mains sur le step · 25-32 sauts latéraux pieds joints par-dessus le step (réceptions amorties)", effet:"Monter haut dans la zone A sans réhausse, quand la propulsion ne suffit pas (d’après le cycle de step de l’équipe)", remplace:"Intermittent court"},
  {nom:"Séance coachée", fil:"A/B", niv:"N3", format:"Format filière, le coach impose un changement de curseur à chaque sortie de zone", effet:"Réguler en direct", remplace:"Passages coachés (S6)"}
 ];
 
